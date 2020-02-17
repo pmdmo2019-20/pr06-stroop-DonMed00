@@ -11,21 +11,33 @@
         android:layout_width="@dimen/assistant_imgIcon_size"
         android:layout_height="@dimen/assistant_imgIcon_size"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="144dp"
+        android:backgroundTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="@color/white"
 
         app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/lblContent"
-        android:layout_width="322dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="340dp"
+        android:layout_width="305dp"
+        android:layout_height="246dp"
+        android:layout_marginStart="52dp"
         android:text="@string/assistant_assistantDescription"
         android:textSize="@dimen/main_textSize_3x"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgIcon" />
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="105dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/assistant_btnFinish"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

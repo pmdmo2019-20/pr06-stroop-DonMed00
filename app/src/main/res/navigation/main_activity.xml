@@ -3,16 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity"
-    app:startDestination="@id/assistantDestination">
+    app:startDestination="@id/dashboardDestination">
 
 
     <fragment
         android:id="@+id/assistantDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment"
         android:label="@string/assistant_title"
-        tools:layout="@layout/assistant_fragment"/>
+        tools:layout="@layout/assistant_fragment">
+        <action
+            android:id="@+id/navigateToDashboard"
+            app:destination="@id/dashboardDestination" />
+    </fragment>
     <fragment
         android:id="@+id/aboutDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.about.AboutFragment"
-        android:label="AboutFragment" />
+        android:label="@string/about_title"
+        tools:layout="@layout/about_fragment"/>
+    <fragment
+        android:id="@+id/dashboardDestination"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.dashboard.DashboardFragment"
+        android:label="@string/dashboard_title"
+        tools:layout="@layout/dashboard_fragment" >
+        <action
+            android:id="@+id/navigateToAssistant"
+            app:destination="@id/assistantDestination" />
+        <action
+            android:id="@+id/navigateToAbout"
+            app:destination="@id/aboutDestination" />
+    </fragment>
 </navigation>
