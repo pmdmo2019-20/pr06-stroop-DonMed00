@@ -14,8 +14,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="@string/about_title"/>
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     <View
         android:id="@+id/view"

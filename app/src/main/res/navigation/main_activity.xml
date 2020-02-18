@@ -31,5 +31,31 @@
         <action
             android:id="@+id/navigateToAbout"
             app:destination="@id/aboutDestination" />
+        <action
+            android:id="@+id/navigateToSettings"
+            app:destination="@id/settingsDestination" />
+        <action
+            android:id="@+id/navigateToPlayers"
+            app:destination="@id/playerFragment" />
+
     </fragment>
+    <fragment
+        android:id="@+id/settingsDestination"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.settings.SettingsFragment"
+        android:label="@string/settings_title" />
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.PlayerFragment"
+        android:label="@string/player_selection_title" >
+        <action
+            android:id="@+id/navigateToAddPlayer"
+            app:destination="@id/playerAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerAddFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.PlayerAddFragment"
+        android:label="@string/player_creation_title"
+        tools:layout="@layout/add_player_fragment" />
+
+
 </navigation>

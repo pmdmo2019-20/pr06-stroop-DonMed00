@@ -1,8 +1,13 @@
 package es.iessaladillo.pedrojoya.stroop.ui.dashboard
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,8 +35,14 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
     private fun setupViews() {
         setupAdapter()
         setupRecyclerView()
+        setupToolbar()
+    }
 
-
+    private fun setupToolbar() {
+        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
+        (requireActivity() as AppCompatActivity).supportActionBar?.run {
+            setDisplayHomeAsUpEnabled(true)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -94,7 +105,9 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
     private fun navigateToPosition(position: Int) {
         when (position) {
+            1 -> findNavController().navigate(R.id.navigateToSettings)
             3 -> findNavController().navigate(R.id.navigateToAssistant)
+            4 -> findNavController().navigate(R.id.navigateToPlayers)
             5 -> findNavController().navigate(R.id.navigateToAbout)
         }
     }

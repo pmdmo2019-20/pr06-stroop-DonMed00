@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     <View
         android:id="@+id/view"
@@ -33,33 +34,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.197" />
+        app:layout_constraintVertical_bias="0.411" />
 
-    <TextView
-        android:id="@+id/lblPlayer"
+    <EditText
+        android:id="@+id/txtAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="@dimen/main_textSize_4x"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="(nickname)"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/imgAvatar"
         app:layout_constraintStart_toStartOf="@+id/imgAvatar"
         app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
-        app:layout_constraintVertical_bias="0.565" />
+        android:textSize="@dimen/main_textSize_4x"
+        android:textColor="@color/white"
+        android:textAlignment="center"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lstCards"
-        android:layout_width="403dp"
-        android:layout_height="496dp"
+        android:id="@+id/lstAvatars"
+        android:layout_width="391dp"
+        android:layout_height="422dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/card_dashboard_item" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/accent"
+        android:src="@drawable/ic_save_black_24dp"
+        android:tint="@color/white"
+        app:elevation="@dimen/main_margin_1x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="@dimen/main_margin_1x" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

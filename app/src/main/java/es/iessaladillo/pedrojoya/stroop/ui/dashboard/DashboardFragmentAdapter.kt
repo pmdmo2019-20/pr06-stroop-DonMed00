@@ -47,11 +47,11 @@ class DashboardFragmentAdapter(var cardList: ArrayList<Card>) :
 
         fun bind(card: Card) {
             card.run {
-                imgBtn.setImageResource(card.imgId)
-                lblBtn.text=card.text
+                imgBtn.setImageResource(imgId)
+                lblBtn.text=text
                 containerView.run {
-                    imgBtn.setColorFilter(context.resources.getColor(card.colorId))
-                    lblBtn.setTextColor(context.resources.getColor(card.colorId))
+                    imgBtn.setColorFilter(context.resources.getColor(colorId))
+                    lblBtn.setTextColor(context.resources.getColor(colorId))
                 }
 
 
