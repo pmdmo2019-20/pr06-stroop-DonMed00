@@ -7,26 +7,24 @@ import es.iessaladillo.pedrojoya.stroop.data.entity.User
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM users")
+    @Query("SELECT * FROM User")
     fun queryAllUsers(): LiveData<List<User>>
 
+    @Query("SELECT count(*) FROM User")
+    fun queryCount(): LiveData<Int>
 
-    @Query("SELECT * FROM users WHERE userId = :userId")
+
+    @Query("SELECT * FROM user WHERE userId = :userId")
     fun queryUser(userId: Long): LiveData<User>
 
 
-
-
-
     @Insert
-    fun insertUser(user: User): Long
+    fun insertUser(user: User)
 
     @Update
-    fun updateUser(user: User): Int
+    fun updateUser(user: User)
 
     @Delete
-    fun deleteUser(user: User): Int
-
-
-    ​
+    fun deleteUser(user: User)
 }
+

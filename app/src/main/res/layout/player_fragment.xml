@@ -70,6 +70,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imgAddPlayer"
         android:textColor="@color/playerOption"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lstPlayers"
+        android:layout_width="391dp"
+        android:layout_height="422dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/card_dashboard_item" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"

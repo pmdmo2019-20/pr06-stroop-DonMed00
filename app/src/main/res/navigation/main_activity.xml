@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/playerAddFragment"
-        android:name="es.iessaladillo.pedrojoya.stroop.ui.player.PlayerAddFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.playerAdd.PlayerAddFragment"
         android:label="@string/player_creation_title"
         tools:layout="@layout/add_player_fragment" />
 
