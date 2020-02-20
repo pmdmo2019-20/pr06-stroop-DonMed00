@@ -31,8 +31,6 @@
             android:layout_gravity="bottom"
             android:background="@color/primaryDark"
             android:visibility="invisible"/>
-
-
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

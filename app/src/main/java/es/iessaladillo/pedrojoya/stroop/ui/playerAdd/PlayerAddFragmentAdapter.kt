@@ -12,12 +12,10 @@ import kotlinx.android.synthetic.main.avatar_player_item.*
 class PlayerAddFragmentAdapter() :
     RecyclerView.Adapter<PlayerAddFragmentAdapter.ViewHolder>() {
 
+    private var avatarList: List<Int> = arrayListOf()
     var onItemClickListener: ((Int) -> Unit)? = null
 
 
-    init {
-        setHasStableIds(true)
-    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemView = layoutInflater.inflate(R.layout.avatar_player_item, parent, false)
@@ -26,11 +24,15 @@ class PlayerAddFragmentAdapter() :
     }
 
     override fun getItemCount(): Int {
-        return avatars.size
+        return avatarList.size
+    }
+    fun submitList(newList : List<Int>){
+        avatarList = newList
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val avatar: Int = avatars[position]
+        val avatar: Int = avatarList[position]
         holder.bind(avatar)
 
 

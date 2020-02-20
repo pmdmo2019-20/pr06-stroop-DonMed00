@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lblPlayer" />
 
     <TextView
-        android:id="@+id/lblNoPlayersYet"
+        android:id="@+id/lblEmptyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"

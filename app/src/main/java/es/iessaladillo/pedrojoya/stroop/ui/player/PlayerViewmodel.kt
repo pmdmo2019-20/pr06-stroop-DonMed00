@@ -11,13 +11,12 @@ class PlayerViewmodel (
     private val application: Application
 ) : ViewModel() {
 
+    val users: LiveData<List<User>> = queryAllUsers()
 
+    lateinit var currenUser : LiveData<User>
 
     fun queryAllUsers(): LiveData<List<User>> {
-       return userDao.queryAllUsers()
-    }
-    fun queryCount(): LiveData<Int> {
-        return userDao.queryCount()
+        return userDao.queryAllUsers()
     }
 
     fun queryUser(userId: Long): LiveData<User> {

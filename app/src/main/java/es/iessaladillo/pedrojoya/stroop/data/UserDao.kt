@@ -10,8 +10,7 @@ interface UserDao {
     @Query("SELECT * FROM User")
     fun queryAllUsers(): LiveData<List<User>>
 
-    @Query("SELECT count(*) FROM User")
-    fun queryCount(): LiveData<Int>
+
 
 
     @Query("SELECT * FROM user WHERE userId = :userId")

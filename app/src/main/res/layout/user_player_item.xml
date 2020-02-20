@@ -8,8 +8,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_viewAvatar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="378dp"
+        android:layout_height="99dp"
         app:cardCornerRadius="@dimen/main_card_cornerRadius"
         app:cardElevation="@dimen/cardview_default_elevation"
         app:cardUseCompatPadding="true"
@@ -17,29 +17,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/imgUser"
-            android:layout_width="@dimen/dashboard_card_image_size"
-            android:layout_height="@dimen/dashboard_card_image_size"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_play_black_24dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <View
-            android:id="@+id/viewCheck"
-            android:layout_width="379dp"
-            android:layout_height="3dp"
-            android:layout_gravity="bottom"
-            android:background="@color/primaryDark"
-            android:visibility="invisible"/>
 
-        <TextView
-            android:id="@+id/lblUser"
-            android:layout_width="77dp"
-            android:layout_height="50dp"
-            android:text="TextView"
-            android:gravity="center"
-            android:layout_gravity="end"/>
+            <ImageView
+                android:id="@+id/imgUser"
+                android:layout_width="@dimen/dashboard_card_image_size"
+                android:layout_height="@dimen/dashboard_card_image_size"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_black_24dp" />
 
+            <View
+                android:id="@+id/viewCheck"
+                android:layout_width="379dp"
+                android:layout_height="3dp"
+                android:layout_gravity="bottom"
+                android:background="@color/primaryDark"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/lblUser"
+                android:layout_width="75dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="TextView" />
+
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

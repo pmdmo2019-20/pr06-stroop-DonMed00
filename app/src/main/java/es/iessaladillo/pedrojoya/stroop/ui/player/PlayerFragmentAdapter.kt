@@ -12,11 +12,12 @@ import kotlinx.android.synthetic.main.avatar_player_item.*
 import kotlinx.android.synthetic.main.avatar_player_item.viewCheck
 import kotlinx.android.synthetic.main.user_player_item.*
 
-class PlayerFragmentAdapter(private val allUsers: LiveData<List<User>>) :
+class PlayerFragmentAdapter() :
     RecyclerView.Adapter<PlayerFragmentAdapter.ViewHolder>() {
 
     var onItemClickListener: ((Int) -> Unit)? = null
 
+    var userList : List<User> = arrayListOf()
 
 
     init {
@@ -30,11 +31,16 @@ class PlayerFragmentAdapter(private val allUsers: LiveData<List<User>>) :
     }
 
     override fun getItemCount(): Int {
-        return allUsers.value!!.size
+        return userList.size
+    }
+
+    fun submitList(newList : List<User>){
+        userList = newList
+        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user : User = allUsers.value!![position]
+        val user : User = userList[position]
         holder.bind(user)
 
 
