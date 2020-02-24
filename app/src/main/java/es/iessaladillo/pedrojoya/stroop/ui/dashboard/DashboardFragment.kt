@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,7 +31,16 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+       // setHasOptionsMenu(true)
         setupViews()
+        toolbar.inflateMenu(R.menu.fragments_menu)
+       /* toolbar.setOnMenuItemClickListener {
+           when (it.itemId) {
+               R.id.mnuHelp ->
+            }
+            true
+        }*/
+
     }
 
     private fun setupViews() {
@@ -40,9 +51,9 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
     private fun setupToolbar() {
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-        }
+        //(requireActivity() as AppCompatActivity).supportActionBar?.run {
+           // setDisplayHomeAsUpEnabled(true)
+        //}
     }
 
     private fun setupRecyclerView() {

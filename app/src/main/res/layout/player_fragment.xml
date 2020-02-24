@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.411" />
 
     <TextView
-        android:id="@+id/lblPlayer"
+        android:id="@+id/lblActualPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/player_selection_no_player_selected"
@@ -57,7 +57,7 @@
         android:src="@drawable/ic_player_add_black_48dp"
         android:tint="@color/playerOption"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblPlayer" />
+        app:layout_constraintTop_toBottomOf="@+id/lblActualPlayer" />
 
     <TextView
         android:id="@+id/lblEmptyView"

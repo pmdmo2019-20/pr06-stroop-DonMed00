@@ -56,10 +56,5 @@
 
     </androidx.preference.PreferenceCategory>
 
-    <map>
-        <string name="currentPlayer">-1</string>
-        <boolean name="iniciado" value="false" />
-    </map>
-
 
 </PreferenceScreen>

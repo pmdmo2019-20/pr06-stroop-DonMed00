@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.411" />
 
     <TextView
-        android:id="@+id/lblPlayer"
+        android:id="@+id/lblABoutTit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
@@ -49,7 +49,7 @@
         android:textColor="@color/white"/>
 
     <TextView
-        android:id="@+id/lblAbout"
+        android:id="@+id/lblAboutDesc"
         android:layout_width="397dp"
         android:layout_height="127dp"
         android:layout_marginStart="12dp"
