@@ -22,6 +22,10 @@ class PlayerAddViewmodel(
     private val _message : MutableLiveData<Event<String>> = MutableLiveData()
     val message : LiveData<Event<String>> get()=_message
 
+    private val _currentPlayerId : MutableLiveData<Long> = MutableLiveData()
+    val currentPlayerId : LiveData<Long>
+        get()=_currentPlayerId
+
 
 
     fun addUser(userName: String, imageUser: Int){
@@ -35,6 +39,10 @@ class PlayerAddViewmodel(
             }
 
         }
+    }
+
+    fun setCurrentPlayerId(userId: Long){
+        _currentPlayerId.value=userId
     }
 
 }

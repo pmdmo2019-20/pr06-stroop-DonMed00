@@ -19,7 +19,9 @@ import es.iessaladillo.pedrojoya.stroop.base.SharedPreferenceLongLiveData
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.data.entity.User
 import es.iessaladillo.pedrojoya.stroop.extensions.invisibleUnless
+import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.player_fragment.*
+import kotlinx.android.synthetic.main.player_fragment.imgActualPlayer
 import kotlinx.android.synthetic.main.player_fragment.toolbar
 
 /**
@@ -35,7 +37,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     private lateinit var playerAdapter: PlayerFragmentAdapter
 
-    
+
 
     private val viewmodel: PlayerViewmodel by viewModels {
         PlayerViewModelFactory(
@@ -47,7 +49,6 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        toolbar.inflateMenu(R.menu.fragments_menu)
         setupViews()
     }
 
@@ -61,24 +62,17 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
     }
 
     private fun setupCurrentPlayer() {
-        //settings.getLong("currentUser", -1)
-
-        //viewmodel.currentUser.value=currentUser
-
-        val currentUser = settings.getLong("currentPlayer", -1)
         if(viewmodel.currentUserId.value!=-1L){
-            viewmodel.queryUser(viewmodel.currentUserId.value!!)
-            lblActualPlayer.text = viewmodel.currentUser.value!!.userName
-            imgActualPlayer.setImageResource(viewmodel.currentUser.value!!.imageId)
+            viewmodel.currentUserId.observe(this){
+                var user = viewmodel.queryUser(it)
+                lblActualPlayer.text = user.userName
+                imgActualPlayer.setImageResource(user.imageId)
+            }
+
         }else{
             lblActualPlayer.text = getString(R.string.player_selection_no_player_selected)
             imgActualPlayer.setImageResource(R.drawable.logo)
         }
-
-
-
-
-
 
     }
 
@@ -101,10 +95,9 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
 
     private fun setupToolbar() {
+        toolbar.inflateMenu(R.menu.fragments_menu)
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
-        // (requireActivity() as AppCompatActivity).supportActionBar?.run {
-        //     setDisplayHomeAsUpEnabled(true)
-        // }
+
     }
 
     private fun setupBtns() {
@@ -135,6 +128,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         settings.edit {
             putLong("currentPlayer", playerAdapter.userList[position].userId)
         }
+        viewmodel.setCurrentUserId(playerAdapter.userList[position].userId)
     }
 
 

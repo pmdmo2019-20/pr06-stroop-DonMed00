@@ -1,5 +1,6 @@
 package es.iessaladillo.pedrojoya.stroop.ui.dashboard
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -7,53 +8,83 @@ import android.view.MenuItem
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.preference.PreferenceManager
+
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
+import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.data.entity.Card
-import kotlinx.android.synthetic.main.assistant_fragment.*
+
 import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.dashboard_fragment.toolbar
 
 
 class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
-    private lateinit var viewModel: DashboardViewModel
-
+    private val viewmodel: DashboardViewModel by viewModels {
+        DashboardViewmodelFactory(
+            UsersDatabase.getInstance(this.requireContext()).userDao,
+            requireActivity().application
+        )
+    }
     private lateinit var dashboardAdapter: DashboardFragmentAdapter
 
+    val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(activity)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-       // setHasOptionsMenu(true)
+        viewmodel.setCurrentUserId(settings.getLong("currentPlayer",-1))
         setupViews()
-        toolbar.inflateMenu(R.menu.fragments_menu)
-       /* toolbar.setOnMenuItemClickListener {
-           when (it.itemId) {
-               R.id.mnuHelp ->
-            }
-            true
-        }*/
+
 
     }
 
     private fun setupViews() {
+        observeFirstInstall()
         setupAdapter()
         setupRecyclerView()
         setupToolbar()
+        observeUser()
+    }
+
+    private fun observeFirstInstall() {
+        var firstTime = settings.getBoolean("firstTime", true)
+        if(firstTime){
+            findNavController().navigate(R.id.navigateToAssistant)
+        }
+        settings.edit {
+            putBoolean("firstTime",false)
+        }
+
+    }
+
+    private fun observeUser() {
+        if (settings.getLong("currentPlayer", -1) != -1L) {
+            viewmodel.currentUserId.observe(this) {
+                var user = viewmodel.queryUser(it)
+                imgActualPlayer.setImageResource(user.imageId)
+                lblActualPlayerDash.text = user.userName
+            }
+
+        } else {
+            imgActualPlayer.setImageResource(R.drawable.logo)
+            lblActualPlayerDash.text = getString(R.string.app_name)
+        }
     }
 
     private fun setupToolbar() {
+        toolbar.inflateMenu(R.menu.fragments_menu)
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
-        //(requireActivity() as AppCompatActivity).supportActionBar?.run {
-           // setDisplayHomeAsUpEnabled(true)
-        //}
+
     }
 
     private fun setupRecyclerView() {

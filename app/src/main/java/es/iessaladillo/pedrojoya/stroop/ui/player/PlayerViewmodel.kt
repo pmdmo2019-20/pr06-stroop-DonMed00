@@ -19,23 +19,27 @@ class PlayerViewmodel (
         PreferenceManager.getDefaultSharedPreferences(application)
     }
 
-    private val _currenUserId : MutableLiveData<Long> = MutableLiveData()
+    private val _currentUserId : MutableLiveData<Long> = MutableLiveData()
     val currentUserId : LiveData<Long>
-        get()=_currenUserId
+        get()=_currentUserId
 
-    private val _currenUser : MutableLiveData<User> = MutableLiveData()
+    private val _currentUser : MutableLiveData<User> = MutableLiveData()
     val currentUser : LiveData<User>
-        get()=_currenUser
+        get()=_currentUser
+
     init {
-        _currenUserId.value=settings.getLong("currentPlayer",-1)
+        _currentUserId.value=settings.getLong("currentPlayer",-1)
     }
 
     fun queryAllUsers(): LiveData<List<User>> {
         return userDao.queryAllUsers()
     }
 
-    fun queryUser(userId: Long) {
-        _currenUser.value = userDao.queryUser(userId)
+    fun queryUser(userId: Long) =userDao.queryUser(userId)
+
+
+    fun setCurrentUserId(userId: Long){
+        _currentUserId.value=userId
     }
 
 }

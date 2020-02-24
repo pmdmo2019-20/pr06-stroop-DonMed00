@@ -15,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
+import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
+import kotlinx.android.synthetic.main.player_edit_fragment.*
 
 
 class MainActivity : AppCompatActivity(), OnToolbarAvailableListener {

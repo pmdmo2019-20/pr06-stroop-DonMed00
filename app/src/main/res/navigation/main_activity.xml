@@ -62,7 +62,7 @@
     <fragment
         android:id="@+id/playerEditFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.playerEdit.PlayerEditFragment"
-        android:label="PlayerEditFragment">
+        android:label="@string/player_edition_title">
     <argument
         android:name="userId"
         app:argType="long" />

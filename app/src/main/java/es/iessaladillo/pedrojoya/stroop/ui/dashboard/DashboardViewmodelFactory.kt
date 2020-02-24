@@ -1,16 +1,17 @@
-package es.iessaladillo.pedrojoya.stroop.ui.playerEdit
+package es.iessaladillo.pedrojoya.stroop.ui.dashboard
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import es.iessaladillo.pedrojoya.stroop.data.UserDao
 
-class PlayerEditViewmodelFactory (
+class DashboardViewmodelFactory (
     private val userDao: UserDao,
     private val application: Application
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-        PlayerEditViewmodel(userDao,application) as T
+        DashboardViewModel(userDao, application) as T
+
 
 
 }

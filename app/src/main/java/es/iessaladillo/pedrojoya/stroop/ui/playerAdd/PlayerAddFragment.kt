@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 
@@ -15,6 +16,8 @@ import es.iessaladillo.pedrojoya.stroop.base.observeEvent
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
 import kotlinx.android.synthetic.main.add_player_fragment.*
+import kotlinx.android.synthetic.main.add_player_fragment.imgActualPlayer
+import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.player_fragment.toolbar
 
 /**
@@ -30,7 +33,6 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
             requireActivity().application
         )
     }
-    private var currentAvatar: Int = 0
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -57,11 +59,14 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
                 activity!!.onBackPressed()
             }
         }
+        viewmodel.currentPlayerId.observe(this){
+            imgActualPlayer.setImageResource(it.toInt())
+        }
     }
 
     private fun save() {
-        if (lblActualPlayerEdit.text.toString().isNotEmpty() && currentAvatar != 0) {
-            viewmodel.addUser(lblActualPlayerEdit.text.toString(), currentAvatar)
+        if (lblActualPlayerEdit.text.toString().isNotEmpty() && viewmodel.currentPlayerId.value != 0L) {
+            viewmodel.addUser(lblActualPlayerEdit.text.toString(), viewmodel.currentPlayerId.value!!.toInt())
             lblActualPlayerEdit.hideSoftKeyboard()
         }
     }
@@ -73,10 +78,9 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
 
 
     private fun setupToolbar() {
+        toolbar.inflateMenu(R.menu.fragments_menu)
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-        }
+
     }
 
     private fun setupRecyclerView() {
@@ -96,8 +100,7 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
     }
 
     private fun selectAvatar(position: Int) {
-        currentAvatar = avatars[position]
-        //lstAvatars[position].viewCheck.visibility = View.VISIBLE
+        viewmodel.setCurrentPlayerId(avatars[position].toLong())
     }
 
 

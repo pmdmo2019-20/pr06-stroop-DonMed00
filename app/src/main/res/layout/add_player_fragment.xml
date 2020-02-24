@@ -27,29 +27,30 @@
 
     <ImageView
         android:id="@+id/imgActualPlayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="81dp"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintVertical_bias="0.357" />
 
     <EditText
         android:id="@+id/lblActualPlayerEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
         android:hint="(nickname)"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_textSize_4x"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="@+id/imgActualPlayer"
         app:layout_constraintStart_toStartOf="@+id/imgActualPlayer"
-        app:layout_constraintTop_toBottomOf="@+id/imgActualPlayer"
-        android:textSize="@dimen/main_textSize_4x"
-        android:textColor="@color/white"
-        android:textAlignment="center"/>
+        app:layout_constraintTop_toBottomOf="@+id/imgActualPlayer" />
 
 
     <androidx.recyclerview.widget.RecyclerView

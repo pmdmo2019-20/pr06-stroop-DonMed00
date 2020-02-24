@@ -9,6 +9,8 @@ import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.entity.Page
 import kotlinx.android.synthetic.main.assistant_fragment.*
+import kotlinx.android.synthetic.main.assistant_fragment.toolbar
+import kotlinx.android.synthetic.main.dashboard_fragment.*
 
 
 class AssistantFragment : Fragment(R.layout.assistant_fragment) {
@@ -103,10 +105,9 @@ class AssistantFragment : Fragment(R.layout.assistant_fragment) {
 
 
     private fun setupToolbar() {
+        toolbar.inflateMenu(R.menu.fragments_menu)
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-        }
+
     }
 
 }

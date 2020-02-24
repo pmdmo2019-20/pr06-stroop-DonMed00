@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui.playerAdd
+package es.iessaladillo.pedrojoya.stroop.ui.playerEdit
 
 import android.app.Application
 import android.widget.Toast
@@ -22,7 +22,9 @@ class PlayerEditViewmodel(
     private val _message : MutableLiveData<Event<String>> = MutableLiveData()
     val message : LiveData<Event<String>> get()=_message
 
-
+    private val _currentPlayerAvatar : MutableLiveData<Int> = MutableLiveData()
+    val currentPlayerAvatar : LiveData<Int>
+        get()=_currentPlayerAvatar
 
     fun updateUser(userId: Long,userName: String, imageUser: Int){
         thread {
@@ -38,6 +40,10 @@ class PlayerEditViewmodel(
     }
     fun queryUser(userId: Long): User {
         return userDao.queryUser(userId)
+    }
+
+    fun setCurrentPlayerAvatar(avatar : Int){
+        _currentPlayerAvatar.value=avatar
     }
 
 }

@@ -32,10 +32,9 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
     }
 
     private fun setupToolbar() {
+        toolbar.inflateMenu(R.menu.fragments_menu)
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.run {
-            setDisplayHomeAsUpEnabled(true)
-        }
+
     }
 
 }
