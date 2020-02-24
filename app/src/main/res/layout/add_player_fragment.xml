@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/imgAvatar"
+        android:id="@+id/imgActualPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
@@ -37,16 +37,16 @@
         app:layout_constraintVertical_bias="0.411" />
 
     <EditText
-        android:id="@+id/txtAvatar"
+        android:id="@+id/lblActualPlayerEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
         android:hint="(nickname)"
         app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/imgAvatar"
-        app:layout_constraintStart_toStartOf="@+id/imgAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/imgAvatar"
+        app:layout_constraintEnd_toEndOf="@+id/imgActualPlayer"
+        app:layout_constraintStart_toStartOf="@+id/imgActualPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/imgActualPlayer"
         android:textSize="@dimen/main_textSize_4x"
         android:textColor="@color/white"
         android:textAlignment="center"/>

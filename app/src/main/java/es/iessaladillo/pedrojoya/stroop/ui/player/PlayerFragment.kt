@@ -3,6 +3,9 @@ package es.iessaladillo.pedrojoya.stroop.ui.player
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.edit
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -32,6 +35,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     private lateinit var playerAdapter: PlayerFragmentAdapter
 
+    
 
     private val viewmodel: PlayerViewmodel by viewModels {
         PlayerViewModelFactory(
@@ -58,20 +62,26 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     private fun setupCurrentPlayer() {
         //settings.getLong("currentUser", -1)
-        val currentUser = SharedPreferenceLongLiveData(
-            settings,
-            "currentUser",
-            -1
-        ).getValueFromPreferences("currentUser", -1)
-        //viewmodel.currenUser.value=currentUser
-        val vmUser = viewmodel.queryUser(viewmodel.currentUser.value!!).toString()
-        if(vmUser.isNullOrBlank()){
-            lblActualPlayer.text = (-1).toString()
+
+        //viewmodel.currentUser.value=currentUser
+
+        val currentUser = settings.getLong("currentPlayer", -1)
+        if(viewmodel.currentUserId.value!=-1L){
+            viewmodel.queryUser(viewmodel.currentUserId.value!!)
+            lblActualPlayer.text = viewmodel.currentUser.value!!.userName
+            imgActualPlayer.setImageResource(viewmodel.currentUser.value!!.imageId)
         }else{
-            lblActualPlayer.text = vmUser
+            lblActualPlayer.text = getString(R.string.player_selection_no_player_selected)
+            imgActualPlayer.setImageResource(R.drawable.logo)
         }
 
+
+
+
+
+
     }
+
 
 
     private fun observeLiveData() {
@@ -101,6 +111,9 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         fabAdd.setOnClickListener { navigateToAddPlayer() }
         imgAddPlayer.setOnClickListener { navigateToAddPlayer() }
         lblEmptyView.setOnClickListener { navigateToAddPlayer() }
+
+        btnEdit.visibility=View.VISIBLE
+        btnEdit.setOnClickListener { navigateToEdit(viewmodel.currentUserId.value!!) }
     }
 
     private fun setupRecyclerView() {
@@ -114,14 +127,22 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     private fun setupAdapter() {
         playerAdapter = PlayerFragmentAdapter().also {
-            it.onItemClickListener = { selectCurrentPlayer(it)}
+            it.onItemClickListener = { selectCurrentPlayer(it) }
         }
     }
 
     private fun selectCurrentPlayer(position: Int) {
-        viewmodel.currentUser.observe(this){
-            playerAdapter.userList[position].userId
+        settings.edit {
+            putLong("currentPlayer", playerAdapter.userList[position].userId)
         }
+    }
+
+
+
+    private fun navigateToEdit(userId: Long) {
+        findNavController().navigate(R.id.navigateToEditPlayer, bundleOf(
+            getString(R.string.ARGS_USER_ID) to userId
+        ))
     }
 
 

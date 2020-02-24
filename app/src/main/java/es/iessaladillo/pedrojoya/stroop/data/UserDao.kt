@@ -13,8 +13,8 @@ interface UserDao {
 
 
 
-    @Query("SELECT * FROM user WHERE userId = :userId")
-    fun queryUser(userId: Long): LiveData<User>
+    @Query("SELECT * FROM User WHERE userId = :userId")
+    fun queryUser(userId: Long): User
 
 
     @Insert

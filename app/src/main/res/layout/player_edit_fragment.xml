@@ -17,7 +17,7 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="165dp"
         android:background="@color/primary"
@@ -26,9 +26,9 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
-        android:id="@+id/imgActualPlayer"
-        android:layout_width="86dp"
-        android:layout_height="84dp"
+        android:id="@+id/imgActualPlayerEdit"
+        android:layout_width="85dp"
+        android:layout_height="86dp"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,82 +36,49 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.411" />
 
-    <TextView
-        android:id="@+id/lblActualPlayer"
+
+    <EditText
+        android:id="@+id/lblActualPlayerEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/player_selection_no_player_selected"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="@+id/imgActualPlayer"
-        app:layout_constraintStart_toStartOf="@+id/imgActualPlayer"
-        app:layout_constraintTop_toBottomOf="@+id/imgActualPlayer"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="(nickname)"
+        app:layout_constraintBottom_toBottomOf="@+id/view1"
+        app:layout_constraintEnd_toEndOf="@+id/imgActualPlayerEdit"
+        app:layout_constraintStart_toStartOf="@+id/imgActualPlayerEdit"
+        app:layout_constraintTop_toBottomOf="@+id/imgActualPlayerEdit"
         android:textSize="@dimen/main_textSize_4x"
-        android:textColor="@color/white"/>
-
-    <ImageView
-        android:id="@+id/imgAddPlayer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="188dp"
-        android:src="@drawable/ic_player_add_black_48dp"
-        android:tint="@color/playerOption"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblActualPlayer" />
-
-    <TextView
-        android:id="@+id/lblEmptyView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/player_selection_no_players_yet"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgAddPlayer"
-        android:textColor="@color/playerOption"/>
+        android:textColor="@color/white"
+        android:textAlignment="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lstPlayers"
+        android:id="@+id/lstAvatars"
         android:layout_width="391dp"
         android:layout_height="422dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/view1"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/card_dashboard_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
+        android:id="@+id/fabSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/accent"
+        android:src="@drawable/ic_save_black_24dp"
         android:tint="@color/white"
-        android:src="@drawable/ic_player_add_black_24dp"
         app:elevation="@dimen/main_margin_1x"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:pressedTranslationZ="@dimen/main_margin_1x" />
-
-    <Button
-        android:id="@+id/btnEdit"
-        android:layout_width="75dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="56dp"
-        android:background="@android:color/transparent"
-        android:drawableStart="@drawable/ic_player_edition_black_24dp"
-        android:drawableTint="@color/white"
-        android:visibility="invisible"
-        android:text="@string/player_selection_btnEdit"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/imgActualPlayer"
-        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

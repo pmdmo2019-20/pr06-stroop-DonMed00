@@ -1,4 +1,4 @@
-package es.iessaladillo.pedrojoya.stroop.ui.playerAdd
+package es.iessaladillo.pedrojoya.stroop.ui.playerEdit
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import es.iessaladillo.pedrojoya.stroop.R
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.avatar_player_item.*
 
-class PlayerAddFragmentAdapter() :
-    RecyclerView.Adapter<PlayerAddFragmentAdapter.ViewHolder>() {
+class PlayerEditFragmentAdapter() :
+    RecyclerView.Adapter<PlayerEditFragmentAdapter.ViewHolder>() {
 
     private var avatarList: List<Int> = arrayListOf()
     var onItemClickListener: ((Int) -> Unit)? = null

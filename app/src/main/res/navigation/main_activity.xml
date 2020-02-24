@@ -50,12 +50,23 @@
         <action
             android:id="@+id/navigateToAddPlayer"
             app:destination="@id/playerAddFragment" />
+        <action
+            android:id="@+id/navigateToEditPlayer"
+            app:destination="@id/playerEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/playerAddFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.playerAdd.PlayerAddFragment"
         android:label="@string/player_creation_title"
         tools:layout="@layout/add_player_fragment" />
+    <fragment
+        android:id="@+id/playerEditFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.playerEdit.PlayerEditFragment"
+        android:label="PlayerEditFragment">
+    <argument
+        android:name="userId"
+        app:argType="long" />
+</fragment>
 
 
 </navigation>
