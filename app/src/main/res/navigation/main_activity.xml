@@ -19,12 +19,12 @@
         android:id="@+id/aboutDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.about.AboutFragment"
         android:label="@string/about_title"
-        tools:layout="@layout/about_fragment"/>
+        tools:layout="@layout/about_fragment" />
     <fragment
         android:id="@+id/dashboardDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.dashboard.DashboardFragment"
         android:label="@string/dashboard_title"
-        tools:layout="@layout/dashboard_fragment" >
+        tools:layout="@layout/dashboard_fragment">
         <action
             android:id="@+id/navigateToAssistant"
             app:destination="@id/assistantDestination" />
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/playerFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.player.PlayerFragment"
-        android:label="@string/player_selection_title" >
+        android:label="@string/player_selection_title">
         <action
             android:id="@+id/navigateToAddPlayer"
             app:destination="@id/playerAddFragment" />
@@ -63,17 +63,22 @@
         android:id="@+id/playerEditFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.playerEdit.PlayerEditFragment"
         android:label="@string/player_edition_title">
-    <argument
-        android:name="userId"
-        app:argType="long" />
-        <action
-            android:id="@+id/navigateToDelete"
-            app:destination="@id/deleteDialogFragment" />
+        <argument
+            android:name="userId"
+            app:argType="long" />
     </fragment>
     <dialog
         android:id="@+id/deleteDialogFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.dialog.DeleteDialogFragment"
         android:label="DeleteDialogFragment" />
+    <dialog
+        android:id="@+id/infoDialogFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.dialog.InfoDialogFragment"
+        android:label="InfoDialogFragment">
+        <argument
+            android:name="message"
+            app:argType="string" />
+    </dialog>
 
 
 </navigation>

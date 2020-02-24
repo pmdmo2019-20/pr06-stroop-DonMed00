@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.stroop.ui.playerEdit
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -93,7 +94,9 @@ class PlayerEditFragment : Fragment(R.layout.player_edit_fragment) {
         toolbar.inflateMenu(R.menu.edit_menu)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.deleteDestination -> findNavController().navigate(R.id.navigateToDelete)
+                R.id.deleteDestination -> findNavController().navigate(R.id.deleteDialogFragment)
+                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,bundleOf(
+                    getString(R.string.ARG_MESSAGE) to getString(R.string.player_edition_help_description)))
             }
             true
         }
