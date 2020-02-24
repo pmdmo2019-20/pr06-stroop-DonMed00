@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 
@@ -15,6 +16,7 @@ import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.base.observeEvent
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
+import es.iessaladillo.pedrojoya.stroop.ui.dialog.DeleteDialogFragment
 import kotlinx.android.synthetic.main.player_edit_fragment.*
 
 /**
@@ -88,9 +90,15 @@ class PlayerEditFragment : Fragment(R.layout.player_edit_fragment) {
 
 
     private fun setupToolbar() {
-        toolbar.inflateMenu(R.menu.fragments_menu)
-        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
+        toolbar.inflateMenu(R.menu.edit_menu)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.deleteDestination -> findNavController().navigate(R.id.navigateToDelete)
+            }
+            true
+        }
 
+        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
 
     }
 

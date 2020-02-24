@@ -66,7 +66,14 @@
     <argument
         android:name="userId"
         app:argType="long" />
-</fragment>
+        <action
+            android:id="@+id/navigateToDelete"
+            app:destination="@id/deleteDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteDialogFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.dialog.DeleteDialogFragment"
+        android:label="DeleteDialogFragment" />
 
 
 </navigation>
