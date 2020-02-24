@@ -62,16 +62,18 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
     }
 
     private fun setupCurrentPlayer() {
-        if(viewmodel.currentUserId.value!=-1L){
-            viewmodel.currentUserId.observe(this){
+        viewmodel.currentUserId.observe(this) {
+            if (viewmodel.currentUserId.value != -1L) {
                 var user = viewmodel.queryUser(it)
                 lblActualPlayer.text = user.userName
                 imgActualPlayer.setImageResource(user.imageId)
-            }
+                btnEdit.visibility=View.VISIBLE
 
-        }else{
-            lblActualPlayer.text = getString(R.string.player_selection_no_player_selected)
-            imgActualPlayer.setImageResource(R.drawable.logo)
+
+            } else {
+                lblActualPlayer.text = getString(R.string.player_selection_no_player_selected)
+                imgActualPlayer.setImageResource(R.drawable.logo)
+            }
         }
 
     }
@@ -105,7 +107,6 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         imgAddPlayer.setOnClickListener { navigateToAddPlayer() }
         lblEmptyView.setOnClickListener { navigateToAddPlayer() }
 
-        btnEdit.visibility=View.VISIBLE
         btnEdit.setOnClickListener { navigateToEdit(viewmodel.currentUserId.value!!) }
     }
 
