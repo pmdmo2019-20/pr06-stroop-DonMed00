@@ -1,28 +1,25 @@
-package es.iessaladillo.pedrojoya.stroop.ui.settings
+package es.iessaladillo.pedrojoya.stroop.ui.ranking
 
-
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.replace
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.onNavDestinationSelected
+
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
-import es.iessaladillo.pedrojoya.stroop.ui.dashboard.DashboardFragment
-import kotlinx.android.synthetic.main.assistant_fragment.*
-import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.settings_fragment.*
-import kotlinx.android.synthetic.main.settings_fragment.toolbar
 
-/**
- * A simple [Fragment] subclass.
- */
-class SettingsFragment : Fragment(R.layout.settings_fragment) {
+class RankingFragment : Fragment(R.layout.ranking_fragment) {
 
+    companion object {
+        fun newInstance() = RankingFragment()
+    }
+
+    private lateinit var viewModel: RankingViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -39,7 +36,7 @@ class SettingsFragment : Fragment(R.layout.settings_fragment) {
             when (it.itemId) {
                 R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,
                     bundleOf(
-                        getString(R.string.ARG_MESSAGE) to getString(R.string.settings_help_description))
+                        getString(R.string.ARG_MESSAGE) to getString(R.string.ranking_help_description))
                 )
             }
             true

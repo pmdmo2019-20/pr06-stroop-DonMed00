@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+
+    <TextView
+        android:id="@+id/lblEmptyViewR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/main_margin_2x"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:text="@string/ranking_no_games_yet"
+        android:textAlignment="center"
+        android:textColor="@color/rankingOption"
+        android:textSize="@dimen/main_textSize_1x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.542" />
+
+    <ImageView
+        android:id="@+id/imgEmptyR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:src="@drawable/ic_ranking_black_48dp"
+        android:tint="@color/rankingOption"
+        app:layout_constraintBottom_toTopOf="@+id/lblEmptyViewR"
+        app:layout_constraintStart_toStartOf="@+id/lblEmptyViewR" />
+
+    <TextView
+        android:id="@+id/lblGameModes"
+        android:layout_width="104dp"
+        android:layout_height="31dp"
+        android:text="@string/ranking_item_gameMode"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="294dp"
+        android:layout_height="31dp"
+        android:entries="@array/ranking_spnGameMode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblGameModes"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <View
+        style="@style/Divider"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -105,7 +105,6 @@ class AssistantFragment : Fragment(R.layout.assistant_fragment) {
 
 
     private fun setupToolbar() {
-        toolbar.inflateMenu(R.menu.fragments_menu)
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
 
     }

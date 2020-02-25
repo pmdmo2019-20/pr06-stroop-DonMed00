@@ -37,6 +37,9 @@
         <action
             android:id="@+id/navigateToPlayers"
             app:destination="@id/playerFragment" />
+        <action
+            android:id="@+id/navigateToRanking"
+            app:destination="@id/rankingFragment" />
 
     </fragment>
     <fragment
@@ -79,6 +82,11 @@
             android:name="message"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.ranking.RankingFragment"
+        android:label="@string/ranking_title"
+        tools:layout="@layout/ranking_fragment" />
 
 
 </navigation>

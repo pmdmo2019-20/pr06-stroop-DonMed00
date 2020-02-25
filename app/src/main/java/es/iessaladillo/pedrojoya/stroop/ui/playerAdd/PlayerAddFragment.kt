@@ -4,8 +4,10 @@ package es.iessaladillo.pedrojoya.stroop.ui.playerAdd
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 
@@ -79,6 +81,15 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
 
     private fun setupToolbar() {
         toolbar.inflateMenu(R.menu.fragments_menu)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,
+                    bundleOf(
+                        getString(R.string.ARG_MESSAGE) to getString(R.string.player_creation_help_description))
+                )
+            }
+            true
+        }
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
 
     }

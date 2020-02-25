@@ -9,6 +9,7 @@ import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -21,6 +22,7 @@ import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.data.entity.Card
+import kotlinx.android.synthetic.main.assistant_fragment.*
 
 import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.dashboard_fragment.toolbar
@@ -83,6 +85,15 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
     private fun setupToolbar() {
         toolbar.inflateMenu(R.menu.fragments_menu)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,
+                    bundleOf(
+                        getString(R.string.ARG_MESSAGE) to getString(R.string.dashboard_help_description))
+                )
+            }
+            true
+        }
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
 
     }
@@ -148,6 +159,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
     private fun navigateToPosition(position: Int) {
         when (position) {
             1 -> findNavController().navigate(R.id.navigateToSettings)
+            2 -> findNavController().navigate(R.id.navigateToRanking)
             3 -> findNavController().navigate(R.id.navigateToAssistant)
             4 -> findNavController().navigate(R.id.navigateToPlayers)
             5 -> findNavController().navigate(R.id.navigateToAbout)

@@ -98,6 +98,15 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     private fun setupToolbar() {
         toolbar.inflateMenu(R.menu.fragments_menu)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,
+                    bundleOf(
+                        getString(R.string.ARG_MESSAGE) to getString(R.string.player_selection_help_description))
+                )
+            }
+            true
+        }
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
 
     }
