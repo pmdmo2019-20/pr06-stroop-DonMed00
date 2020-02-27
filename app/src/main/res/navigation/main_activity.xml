@@ -73,7 +73,14 @@
     <dialog
         android:id="@+id/deleteDialogFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.dialog.DeleteDialogFragment"
-        android:label="DeleteDialogFragment" />
+        android:label="DeleteDialogFragment">
+        <argument
+            android:name="userId"
+            app:argType="long" />
+        <action
+            android:id="@+id/comeBack"
+            app:popUpTo="@id/playerFragment" />
+    </dialog>
     <dialog
         android:id="@+id/infoDialogFragment"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.dialog.InfoDialogFragment"

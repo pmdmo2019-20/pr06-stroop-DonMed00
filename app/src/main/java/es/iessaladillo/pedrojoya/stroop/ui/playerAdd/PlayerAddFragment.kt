@@ -62,7 +62,12 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
             }
         }
         viewmodel.currentPlayerId.observe(this){
-            imgActualPlayer.setImageResource(it.toInt())
+            if(it==0L){
+                imgActualPlayer.setImageResource(R.drawable.logo)
+            }else{
+                imgActualPlayer.setImageResource(it.toInt())
+
+            }
         }
     }
 

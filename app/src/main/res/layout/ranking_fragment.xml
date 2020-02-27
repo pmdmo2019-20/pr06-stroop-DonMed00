@@ -62,10 +62,24 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <View
+        android:id="@+id/view2"
         style="@style/Divider"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lstGames"
+        android:layout_width="397dp"
+        android:layout_height="542dp"
+        android:layout_margin="10dp"
+
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.181"
+        tools:listitem="@layout/card_dashboard_item" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,7 +38,6 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
     private lateinit var playerAdapter: PlayerFragmentAdapter
 
 
-
     private val viewmodel: PlayerViewmodel by viewModels {
         PlayerViewModelFactory(
             UsersDatabase.getInstance
@@ -62,12 +61,13 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
     }
 
     private fun setupCurrentPlayer() {
+
         viewmodel.currentUserId.observe(this) {
-            if (viewmodel.currentUserId.value != -1L) {
+            if (viewmodel.currentUserId.value != -1L && settings.getLong("currentPlayer",-1)!=-1L) {
                 var user = viewmodel.queryUser(it)
                 lblActualPlayer.text = user.userName
                 imgActualPlayer.setImageResource(user.imageId)
-                btnEdit.visibility=View.VISIBLE
+                btnEdit.visibility = View.VISIBLE
 
 
             } else {
@@ -75,9 +75,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
                 imgActualPlayer.setImageResource(R.drawable.logo)
             }
         }
-
     }
-
 
 
     private fun observeLiveData() {
@@ -100,9 +98,11 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         toolbar.inflateMenu(R.menu.fragments_menu)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,
+                R.id.InfoDialogDestination -> findNavController().navigate(
+                    R.id.infoDialogFragment,
                     bundleOf(
-                        getString(R.string.ARG_MESSAGE) to getString(R.string.player_selection_help_description))
+                        getString(R.string.ARG_MESSAGE) to getString(R.string.player_selection_help_description)
+                    )
                 )
             }
             true
@@ -142,11 +142,12 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
     }
 
 
-
     private fun navigateToEdit(userId: Long) {
-        findNavController().navigate(R.id.navigateToEditPlayer, bundleOf(
-            getString(R.string.ARGS_USER_ID) to userId
-        ))
+        findNavController().navigate(
+            R.id.navigateToEditPlayer, bundleOf(
+                getString(R.string.ARGS_USER_ID) to userId
+            )
+        )
     }
 
 

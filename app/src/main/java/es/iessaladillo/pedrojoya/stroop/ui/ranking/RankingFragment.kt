@@ -1,17 +1,13 @@
 package es.iessaladillo.pedrojoya.stroop.ui.ranking
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
-import kotlinx.android.synthetic.main.settings_fragment.*
+
+import kotlinx.android.synthetic.main.settings_fragment.toolbar
 
 class RankingFragment : Fragment(R.layout.ranking_fragment) {
 
@@ -19,7 +15,9 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
         fun newInstance() = RankingFragment()
     }
 
-    private lateinit var viewModel: RankingViewModel
+    private lateinit var rankingAdapter: RankingFragmentAdapter
+
+    private lateinit var viewmodel: RankingViewModel
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -28,6 +26,7 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
 
     private fun setupViews() {
         setupToolbar()
+        setupAdapter()
     }
 
     private fun setupToolbar() {
@@ -43,6 +42,11 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
         }
         (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
 
+    }
+
+
+    private fun setupAdapter() {
+        rankingAdapter = RankingFragmentAdapter()
     }
 
 }

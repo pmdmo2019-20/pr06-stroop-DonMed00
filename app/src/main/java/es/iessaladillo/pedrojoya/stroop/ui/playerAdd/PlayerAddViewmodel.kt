@@ -22,7 +22,7 @@ class PlayerAddViewmodel(
     private val _message : MutableLiveData<Event<String>> = MutableLiveData()
     val message : LiveData<Event<String>> get()=_message
 
-    private val _currentPlayerId : MutableLiveData<Long> = MutableLiveData()
+    private val _currentPlayerId : MutableLiveData<Long> = MutableLiveData(0)
     val currentPlayerId : LiveData<Long>
         get()=_currentPlayerId
 

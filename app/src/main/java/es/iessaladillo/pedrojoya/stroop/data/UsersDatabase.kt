@@ -6,11 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import es.iessaladillo.pedrojoya.stroop.R
+import es.iessaladillo.pedrojoya.stroop.data.entity.Game
 import es.iessaladillo.pedrojoya.stroop.data.entity.User
+import es.iessaladillo.pedrojoya.stroop.data.entity.UserGame
 import kotlin.concurrent.thread
 
 @Database(
-    entities = [User::class],
+    entities = [User::class, Game::class, UserGame::class],
     version = 1,
     exportSchema = true
 )

@@ -94,7 +94,9 @@ class PlayerEditFragment : Fragment(R.layout.player_edit_fragment) {
         toolbar.inflateMenu(R.menu.edit_menu)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.deleteDestination -> findNavController().navigate(R.id.deleteDialogFragment)
+                R.id.deleteDestination -> findNavController().navigate(R.id.deleteDialogFragment,bundleOf(
+                    getString(R.string.ARGS_USER_DELETE) to userId))
+
                 R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,bundleOf(
                     getString(R.string.ARG_MESSAGE) to getString(R.string.player_edition_help_description)))
             }

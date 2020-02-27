@@ -99,5 +99,6 @@
     <string name="settingsTitle2">RANKING</string>
     <string name="ARGS_USER_ID" />
     <string name="ARG_MESSAGE" />
+    <string name="ARGS_USER_DELETE" />
 
 </resources>

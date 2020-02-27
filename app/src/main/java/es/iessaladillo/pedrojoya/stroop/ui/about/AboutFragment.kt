@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import kotlinx.android.synthetic.main.assistant_fragment.toolbar
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -18,6 +19,7 @@ class AboutFragment : Fragment(R.layout.about_fragment) {
 
     private fun setupViews() {
         setupToolbar()
+        
     }
     private fun setupToolbar() {
         toolbar.inflateMenu(R.menu.fragments_menu)
