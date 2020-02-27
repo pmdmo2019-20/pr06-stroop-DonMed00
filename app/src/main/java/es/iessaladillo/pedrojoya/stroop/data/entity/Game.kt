@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 )
 data class Game(
     @PrimaryKey(autoGenerate = true) val gameId: Long,
-    val userId : Long,
     val gameMode: String,
     val totalTime: Int,
     val totalWords: Int,

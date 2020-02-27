@@ -19,6 +19,9 @@ import kotlin.concurrent.thread
 abstract class UsersDatabase : RoomDatabase() {
 
     abstract val userDao: UserDao
+    abstract val gameDao: GameDao
+    abstract val userGameDao: UserGameDao
+
 
     companion object {
 
@@ -43,6 +46,15 @@ abstract class UsersDatabase : RoomDatabase() {
                                             R.drawable.avatar_01_mexican
                                         )
                                     )
+                                    INSTANCE!!.gameDao.insertGame(
+                                        Game(0, "Time", 1, 20, 5, 50)
+                                    )
+                                    INSTANCE!!.gameDao.insertGame(
+                                        Game(0, "Attemtps", 2, 56, 20, 200)
+                                    )
+
+                                    INSTANCE!!.userGameDao.insertUserGame(UserGame(1, 1))
+                                    INSTANCE!!.userGameDao.insertUserGame(UserGame(1, 2))
                                 }
 
                             }

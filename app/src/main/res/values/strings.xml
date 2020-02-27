@@ -84,9 +84,11 @@
     <string name="ranking_title">Ranking</string>
     <string name="ranking_help_description">You can filter the game results by game mode</string>
 
-    <string name="ranking_item_words">Words:</string>
-    <string name="ranking_item_correct">Correct:</string>
-    <string name="ranking_item_time">Minutes:</string>
+    <string name="ranking_item_gameMode2">Game mode: %1$s</string>
+    <string name="ranking_item_words">Words: %1$s</string>
+    <string name="ranking_item_correct">Correct: %1$s</string>
+    <string name="ranking_item_time">Minutes: %1$s</string>
+
 
     <string name="player_deletion_title">Player deletion</string>
     <string name="player_deletion_message">Are you sure to delete the current player? All their games will be deleted too</string>
