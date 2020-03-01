@@ -158,6 +158,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
     private fun navigateToPosition(position: Int) {
         when (position) {
+            0 -> findNavController().navigate(R.id.navigateToGame)
             1 -> findNavController().navigate(R.id.navigateToSettings)
             2 -> findNavController().navigate(R.id.navigateToRanking)
             3 -> findNavController().navigate(R.id.navigateToAssistant)

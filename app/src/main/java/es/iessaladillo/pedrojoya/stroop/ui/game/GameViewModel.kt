@@ -1,12 +1,19 @@
 package es.iessaladillo.pedrojoya.stroop.ui.game
 
+import android.app.Application
+import android.graphics.Color
 import android.os.Handler
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import es.iessaladillo.pedrojoya.stroop.data.GameDao
 import kotlin.concurrent.thread
+import kotlin.random.Random
 
 
 class GameViewModel(
-    // TODO
+    private val gameDao: GameDao,
+    private val application: Application
 ) : ViewModel() {
 
     @Volatile
@@ -17,10 +24,45 @@ class GameViewModel(
     private var millisUntilFinished: Int = 0
     private val handler: Handler = Handler()
 
-    // TODO
+
+    private val _progressBarTime: MutableLiveData<Int> = MutableLiveData(millisUntilFinished)
+    val progressBarTime: LiveData<Int>
+        get() = _progressBarTime
+
+    private val _wordsShown: MutableLiveData<Int> = MutableLiveData(0)
+    val wordsShown: LiveData<Int>
+        get() = _wordsShown
+
+    private val _wordsCorrects: MutableLiveData<Int> = MutableLiveData(0)
+    val wordsCorrects: LiveData<Int>
+        get() = _wordsCorrects
+
+
+    private val _points: MutableLiveData<Int> = MutableLiveData(0)
+    val points: LiveData<Int>
+        get() = _points
+
+
+    private val _attempt: MutableLiveData<Int> = MutableLiveData(0)
+    val attempt: LiveData<Int>
+        get() = _attempt
+
+
+    val words: List<String> = listOf("Blue", "Red", "Yellow", "Green")
+
+    val colors: List<Int> = listOf(Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN)
+
+    private val _currentWordIndex: MutableLiveData<Int> = MutableLiveData(0)
+    val currentWordIndex: LiveData<Int>
+        get() = _currentWordIndex
+
+    private val _currentColorIndex: MutableLiveData<Int> = MutableLiveData(0)
+    val currentColorIndex: LiveData<Int>
+        get() = _currentColorIndex
+
 
     private fun onGameTimeTick(millisUntilFinished: Int) {
-        // TODO
+        _progressBarTime.value = millisUntilFinished
     }
 
     private fun onGameTimeFinish() {
@@ -29,17 +71,45 @@ class GameViewModel(
     }
 
     fun nextWord() {
-        // TODO
+        incrementWordsShown()
+        changeCurrentWord()
+
+
     }
 
     fun checkRight() {
         currentWordMillis = 0
-        // TODO
+        if(currentColorIndex.value==currentWordIndex.value){
+            incrementWordsCorrects()
+            incrementPoints()
+        }
+        nextWord()
     }
 
     fun checkWrong() {
         currentWordMillis = 0
-        // TODO
+        if(currentColorIndex.value!=currentWordIndex.value){
+            incrementWordsCorrects()
+            incrementPoints()
+
+        }
+        nextWord()
+    }
+
+    fun changeCurrentWord() {
+        _currentWordIndex.value = words.indexOf(words[Random.nextInt(4)])
+        _currentColorIndex.value = colors.indexOf(colors[Random.nextInt(4)])
+    }
+
+    fun incrementWordsShown() {
+        _wordsShown.value = _wordsShown.value!!.plus(1)
+    }
+
+    fun incrementWordsCorrects() {
+        _wordsCorrects.value = _wordsCorrects.value!!.plus(1)
+    }
+    fun incrementPoints(){
+        _points.value=_points.value!!.plus(10)
     }
 
     fun startGameThread(gameTime: Int, wordTime: Int) {

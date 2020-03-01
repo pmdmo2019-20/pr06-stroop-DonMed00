@@ -3,6 +3,7 @@ package es.iessaladillo.pedrojoya.stroop.ui.ranking
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.data.UserGameDao
@@ -13,10 +14,18 @@ class RankingViewModel(
     private val application: Application
 ) : ViewModel() {
 
+
+
     val userGames: LiveData<List<UserAndGame>> = queryAllUserGames()
+
+
+
     val settings: SharedPreferences by lazy {
         PreferenceManager.getDefaultSharedPreferences(application)
     }
+
+
+
 
 
     fun queryAllUserGames(): LiveData<List<UserAndGame>> {
@@ -30,6 +39,8 @@ class RankingViewModel(
     fun queryAllUserGamesAttempts(): LiveData<List<UserAndGame>> {
         return userGameDao.queryAllUserGameAttempts()
     }
+
+
 
 
 }

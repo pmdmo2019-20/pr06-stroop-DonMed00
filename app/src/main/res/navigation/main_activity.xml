@@ -10,11 +10,8 @@
         android:id="@+id/assistantDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.assistant.AssistantFragment"
         android:label="@string/assistant_title"
-        tools:layout="@layout/assistant_fragment">
-        <action
-            android:id="@+id/navigateToDashboard"
-            app:destination="@id/dashboardDestination" />
-    </fragment>
+        tools:layout="@layout/assistant_fragment"/>
+
     <fragment
         android:id="@+id/aboutDestination"
         android:name="es.iessaladillo.pedrojoya.stroop.ui.about.AboutFragment"
@@ -40,6 +37,9 @@
         <action
             android:id="@+id/navigateToRanking"
             app:destination="@id/rankingFragment" />
+        <action
+            android:id="@+id/navigateToGame"
+            app:destination="@id/gameFragment" />
 
     </fragment>
     <fragment
@@ -94,6 +94,10 @@
         android:name="es.iessaladillo.pedrojoya.stroop.ui.ranking.RankingFragment"
         android:label="@string/ranking_title"
         tools:layout="@layout/ranking_fragment" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.game.GameFragment"
+        android:label="GameFragment" />
 
 
 </navigation>

@@ -53,16 +53,16 @@
     <string name="player_edition_help_description">Here you can change the nickname and the avatar of the current player</string>
     <string name="player_edition_no_avatars_yet">No avatars yet</string>
 
-    <string name="game_lblWordsLabel">Words</string>
-    <string name="game_lblCorrectLabel">Correct</string>
+    <string name="game_lblWordsLabel">%1$s\nWords</string>
+    <string name="game_lblCorrectLabel">%1$s\nCorrect</string>
     <string name="game_yellow">Yellow</string>
     <string name="game_blue">Blue</string>
     <string name="game_red">Red</string>
     <string name="game_green">Green</string>
     <string name="game_btnWrong">Wrong</string>
     <string name="game_btnRight">Right</string>
-    <string name="game_points">Points</string>
-    <string name="game_attempts">Attempts</string>
+    <string name="game_points">%1$s\nPoints</string>
+    <string name="game_attempts">%1$s\nAttempts</string>
     <string name="game_error_inserting_player">Error inserting player</string>
 
     <string name="game_result_lblResults">Results</string>
