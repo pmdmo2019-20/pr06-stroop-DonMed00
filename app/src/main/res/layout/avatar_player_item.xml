@@ -8,8 +8,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_viewAvatar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="379dp"
+        android:layout_height="72dp"
         app:cardCornerRadius="@dimen/main_card_cornerRadius"
         app:cardElevation="@dimen/cardview_default_elevation"
         app:cardUseCompatPadding="true"
@@ -17,20 +17,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/imgAvat"
-            android:layout_width="@dimen/dashboard_card_image_size"
-            android:layout_height="@dimen/dashboard_card_image_size"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_play_black_24dp" />
+        <LinearLayout
+            android:layout_width="379dp"
+            android:layout_height="87dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgAvat"
+                android:layout_width="65dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_black_24dp" />
+
+        </LinearLayout>
 
         <View
             android:id="@+id/viewCheck"
             android:layout_width="379dp"
-            android:layout_height="3dp"
+            android:layout_height="15dp"
             android:layout_gravity="bottom"
             android:background="@color/primaryDark"
-            android:visibility="invisible"/>
+            android:foregroundGravity="bottom"
+            android:visibility="visible" />
+
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,7 +50,7 @@ abstract class UsersDatabase : RoomDatabase() {
                                         Game(0, "Time", 1, 20, 5, 50)
                                     )
                                     INSTANCE!!.gameDao.insertGame(
-                                        Game(0, "Attemtps", 2, 56, 20, 200)
+                                        Game(0, "Attempts", 2, 56, 20, 200)
                                     )
 
                                     INSTANCE!!.userGameDao.insertUserGame(UserGame(1, 1))

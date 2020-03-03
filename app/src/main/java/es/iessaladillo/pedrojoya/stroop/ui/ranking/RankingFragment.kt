@@ -2,25 +2,22 @@ package es.iessaladillo.pedrojoya.stroop.ui.ranking
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
-import es.iessaladillo.pedrojoya.stroop.data.entity.User
 import es.iessaladillo.pedrojoya.stroop.data.pojo.UserAndGame
 import es.iessaladillo.pedrojoya.stroop.extensions.invisibleUnless
-import kotlinx.android.synthetic.main.player_fragment.*
 import kotlinx.android.synthetic.main.ranking_fragment.*
-
-import kotlinx.android.synthetic.main.settings_fragment.toolbar
 
 class RankingFragment : Fragment(R.layout.ranking_fragment) {
 
@@ -37,17 +34,20 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
         )
     }
 
+    val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(activity)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViews()
     }
 
     private fun setupViews() {
-
         setupToolbar()
         setupAdapter()
         setupRecyclerView()
-        observeLiveData()
+        setupSpinner()
 
     }
 
@@ -72,20 +72,45 @@ class RankingFragment : Fragment(R.layout.ranking_fragment) {
         rankingAdapter = RankingFragmentAdapter(activity!!.application)
     }
 
-    private fun observeLiveData() {
+    private fun setupSpinner() {
+        when (settings.getString("prefRankingFilter", "All").toString().toLowerCase()) {
+            "all" -> {
+                spinnerModes.setSelection(0)
+            }
+            "time" -> {
+                spinnerModes.setSelection(1)
+            }
+            "attempts" -> {
+                spinnerModes.setSelection(2)
+            }
+        }
+        spinnerModes.onItemSelectedListener =  object: AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (spinnerModes.selectedItem.toString().toLowerCase()) {
+                    "all" -> {
+                        viewmodel.queryAllUserGames()
+                    }
+                    "time" -> {
+                        viewmodel.queryAllUserGamesTime()
+                    }
+                    "attempts" -> {
+                        viewmodel.queryAllUserGamesAttempts()
+                    }
+                }
+            }
+        }
 
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
         viewmodel.userGames.observe(this) {
-            /*when (spinnerModes.selectedItem) {
-                "All" -> {
-                    viewmodel.setUserGames(viewmodel.queryAllUserGames())
-                }
-                "Time" -> {
-                    viewmodel.setUserGames(viewmodel.queryAllUserGamesTime())
-                }
-                else -> {
-                    viewmodel.setUserGames(viewmodel.queryAllUserGamesAttempts())
-                }
-            }*/
             showPlayers(it)
         }
     }

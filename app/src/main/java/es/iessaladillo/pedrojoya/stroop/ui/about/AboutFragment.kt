@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
-import kotlinx.android.synthetic.main.assistant_fragment.toolbar
-import java.util.*
+import kotlinx.android.synthetic.main.about_fragment.*
 
 /**
  * A simple [Fragment] subclass.

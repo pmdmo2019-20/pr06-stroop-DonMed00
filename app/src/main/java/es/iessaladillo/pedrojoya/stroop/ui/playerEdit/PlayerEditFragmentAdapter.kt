@@ -13,6 +13,7 @@ class PlayerEditFragmentAdapter() :
 
     private var avatarList: List<Int> = arrayListOf()
     var onItemClickListener: ((Int) -> Unit)? = null
+    var currentPosition: Int = -1
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +26,8 @@ class PlayerEditFragmentAdapter() :
     override fun getItemCount(): Int {
         return avatarList.size
     }
-    fun submitList(newList : List<Int>){
+
+    fun submitList(newList: List<Int>) {
         avatarList = newList
         notifyDataSetChanged()
     }
@@ -33,8 +35,6 @@ class PlayerEditFragmentAdapter() :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val avatar: Int = avatarList[position]
         holder.bind(avatar)
-
-
     }
 
 
@@ -48,9 +48,13 @@ class PlayerEditFragmentAdapter() :
 
         }
 
-        fun bind(avatar:Int) {
+        fun bind(avatar: Int) {
             imgAvat.setImageResource(avatar)
-            viewCheck.visibility=View.INVISIBLE
+            if (currentPosition == adapterPosition) {
+                viewCheck.visibility = View.VISIBLE
+            } else {
+                viewCheck.visibility = View.INVISIBLE
             }
         }
     }
+}

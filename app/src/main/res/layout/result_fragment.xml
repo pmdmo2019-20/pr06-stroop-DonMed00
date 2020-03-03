@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarR"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    <View
+        android:id="@+id/viewR"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:background="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarR" />
+
+    <ImageView
+        android:id="@+id/imgActualPlayerR"
+        android:layout_width="93dp"
+        android:layout_height="78dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@+id/viewR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarR"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <TextView
+        android:id="@+id/lblActualPlayerR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="@+id/viewR"
+        app:layout_constraintEnd_toEndOf="@+id/imgActualPlayerR"
+        app:layout_constraintStart_toStartOf="@+id/imgActualPlayerR"
+        app:layout_constraintTop_toBottomOf="@+id/imgActualPlayerR"
+        android:textSize="@dimen/main_textSize_4x"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/lblResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/main_margin_4x"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="124dp"
+        android:text="@string/game_result_lblResults"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_5x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewR" />
+
+    <TextView
+        android:id="@+id/lbl1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="312dp"
+        android:text="@string/game_result_lblCorrectLabel"
+        android:textSize="@dimen/main_textSize_4x"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbarR" />
+
+    <TextView
+        android:id="@+id/lbl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="4dp"
+        android:text="20"
+        android:textAlignment="center"
+
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_4x"
+        app:layout_constraintStart_toStartOf="@+id/lbl1"
+        app:layout_constraintTop_toBottomOf="@+id/lbl1" />
+
+    <TextView
+        android:id="@+id/lbl3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/game_result_lblIncorrectLabel"
+        android:textSize="@dimen/main_textSize_4x"
+        app:layout_constraintStart_toStartOf="@+id/lbl1"
+        app:layout_constraintTop_toBottomOf="@+id/lbl2" />
+
+    <TextView
+        android:id="@+id/lbl4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="10"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_4x"
+        app:layout_constraintEnd_toEndOf="@+id/lbl3"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="@+id/lbl3"
+        app:layout_constraintTop_toBottomOf="@+id/lbl3" />
+
+    <TextView
+        android:id="@+id/lbl5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/game_result_lblPointsLabel"
+        android:textSize="@dimen/main_textSize_4x"
+        app:layout_constraintStart_toStartOf="@+id/lbl3"
+        app:layout_constraintTop_toBottomOf="@+id/lbl4" />
+
+    <TextView
+        android:id="@+id/lbl6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:gravity="center"
+        android:text="10"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/main_textSize_4x"
+        app:layout_constraintStart_toStartOf="@+id/lbl5"
+        app:layout_constraintTop_toBottomOf="@+id/lbl5" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

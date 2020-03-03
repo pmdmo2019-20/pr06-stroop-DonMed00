@@ -14,18 +14,18 @@ interface UserGameDao {
 
     @Query("SELECT imageId,userName,gameMode,totalTime,totalWords,corrects,points " +
             "FROM UserGame INNER JOIN User on UserGame.userId=User.userId " +
-            "INNER JOIN Game on UserGame.gameId=Game.gameId order by points DESC")
-    fun queryAllUserGame(): LiveData<List<UserAndGame>>
+            "INNER JOIN Game on UserGame.gameId=Game.gameId order by points DESC,userName LIMIT 5")
+    fun queryAllUserGame(): List<UserAndGame>
 
     @Query("SELECT imageId,userName,gameMode,totalTime,totalWords,corrects,points " +
             "FROM UserGame INNER JOIN User on UserGame.userId=User.userId " +
-            "INNER JOIN Game on UserGame.gameId=Game.gameId where gameMode=\"Time\" order by points DESC")
-    fun queryAllUserGameTime(): LiveData<List<UserAndGame>>
+            "INNER JOIN Game on UserGame.gameId=Game.gameId where gameMode=\"Time\" order by points DESC,userName LIMIT 5")
+    fun queryAllUserGameTime(): List<UserAndGame>
 
 
     @Query("SELECT imageId,userName,gameMode,totalTime,totalWords,corrects,points " +
             "FROM UserGame INNER JOIN User on UserGame.userId=User.userId " +
-            "INNER JOIN Game on UserGame.gameId=Game.gameId where gameMode=\"Attempts\" order by points DESC")
-    fun queryAllUserGameAttempts(): LiveData<List<UserAndGame>>
+            "INNER JOIN Game on UserGame.gameId=Game.gameId where gameMode=\"Attempts\" order by points DESC,userName LIMIT 5")
+    fun queryAllUserGameAttempts(): List<UserAndGame>
 }
 

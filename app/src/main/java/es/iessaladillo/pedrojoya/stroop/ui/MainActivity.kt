@@ -9,13 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
+import es.iessaladillo.pedrojoya.stroop.ui.result.ResultFragment
 import kotlinx.android.synthetic.main.player_edit_fragment.*
 
 
@@ -29,13 +32,15 @@ class MainActivity : AppCompatActivity(), OnToolbarAvailableListener {
         PreferenceManager.getDefaultSharedPreferences(applicationContext)
     }
     private val questionsSize by lazy {
-        settings.getBoolean("iniciado",false
+        settings.getBoolean(
+            "iniciado", false
         )
     }
 
     private val appBarConfiguration: AppBarConfiguration =
         AppBarConfiguration.Builder(
-            R.id.dashboardDestination)
+            R.id.dashboardDestination
+        )
             .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +51,12 @@ class MainActivity : AppCompatActivity(), OnToolbarAvailableListener {
 
     }
 
+
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
+
+
         return true
     }
 
@@ -57,9 +66,6 @@ class MainActivity : AppCompatActivity(), OnToolbarAvailableListener {
 
     override fun onToolbarDestroyed() {
     }
-
-
-
 
 
 }

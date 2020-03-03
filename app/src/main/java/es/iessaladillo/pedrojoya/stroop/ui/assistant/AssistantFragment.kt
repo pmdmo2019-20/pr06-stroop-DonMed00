@@ -1,16 +1,12 @@
 package es.iessaladillo.pedrojoya.stroop.ui.assistant
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.data.entity.Page
 import kotlinx.android.synthetic.main.assistant_fragment.*
-import kotlinx.android.synthetic.main.assistant_fragment.toolbar
-import kotlinx.android.synthetic.main.dashboard_fragment.*
 
 
 class AssistantFragment : Fragment(R.layout.assistant_fragment) {

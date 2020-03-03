@@ -2,12 +2,6 @@ package es.iessaladillo.pedrojoya.stroop.ui.dashboard
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -20,12 +14,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
+import es.iessaladillo.pedrojoya.stroop.base.SharedPreferenceLongLiveData
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.data.entity.Card
-import kotlinx.android.synthetic.main.assistant_fragment.*
 
 import kotlinx.android.synthetic.main.dashboard_fragment.*
-import kotlinx.android.synthetic.main.dashboard_fragment.toolbar
+import kotlinx.android.synthetic.main.dashboard_fragment.toolbarR
 
 
 class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
@@ -44,7 +38,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewmodel.setCurrentUserId(settings.getLong("currentPlayer",-1))
+        viewmodel.setCurrentUserId(settings.getLong("currentPlayer", -1))
         setupViews()
 
 
@@ -60,41 +54,49 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
 
     private fun observeFirstInstall() {
         var firstTime = settings.getBoolean("firstTime", true)
-        if(firstTime){
+        if (firstTime) {
             findNavController().navigate(R.id.navigateToAssistant)
         }
         settings.edit {
-            putBoolean("firstTime",false)
+            putBoolean("firstTime", false)
         }
 
     }
 
     private fun observeUser() {
-        if (settings.getLong("currentPlayer", -1) != -1L) {
-            viewmodel.currentUserId.observe(this) {
+        SharedPreferenceLongLiveData(settings, "currentPlayer", -1L).observe(this) {
+            if (it != -1L) {
                 var user = viewmodel.queryUser(it)
                 imgActualPlayer.setImageResource(user.imageId)
                 lblActualPlayerDash.text = user.userName
+            } else {
+                imgActualPlayer.setImageResource(R.drawable.logo)
+                lblActualPlayerDash.text = getString(R.string.app_name)
             }
-
-        } else {
-            imgActualPlayer.setImageResource(R.drawable.logo)
-            lblActualPlayerDash.text = getString(R.string.app_name)
+            setupLblAndImg()
         }
     }
 
+    private fun setupLblAndImg() {
+        imgActualPlayer.setOnClickListener { findNavController().navigate(R.id.navigateToPlayers) }
+        lblActualPlayerDash.setOnClickListener { findNavController().navigate(R.id.navigateToPlayers) }
+
+    }
+
     private fun setupToolbar() {
-        toolbar.inflateMenu(R.menu.fragments_menu)
-        toolbar.setOnMenuItemClickListener {
+        toolbarR.inflateMenu(R.menu.fragments_menu)
+        toolbarR.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,
+                R.id.InfoDialogDestination -> findNavController().navigate(
+                    R.id.infoDialogFragment,
                     bundleOf(
-                        getString(R.string.ARG_MESSAGE) to getString(R.string.dashboard_help_description))
+                        getString(R.string.ARG_MESSAGE) to getString(R.string.dashboard_help_description)
+                    )
                 )
             }
             true
         }
-        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
+        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbarR)
 
     }
 
@@ -157,8 +159,13 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
     }
 
     private fun navigateToPosition(position: Int) {
+
         when (position) {
-            0 -> findNavController().navigate(R.id.navigateToGame)
+            0 -> if(settings.getLong("currentPlayer",-1)==-1L){
+                findNavController().navigate(R.id.navigateToPlayers)
+            }else{
+                findNavController().navigate(R.id.navigateToGame)
+            }
             1 -> findNavController().navigate(R.id.navigateToSettings)
             2 -> findNavController().navigate(R.id.navigateToRanking)
             3 -> findNavController().navigate(R.id.navigateToAssistant)

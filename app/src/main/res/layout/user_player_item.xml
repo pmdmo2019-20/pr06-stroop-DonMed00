@@ -30,14 +30,6 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_play_black_24dp" />
 
-            <View
-                android:id="@+id/viewCheck"
-                android:layout_width="379dp"
-                android:layout_height="3dp"
-                android:layout_gravity="bottom"
-                android:background="@color/primaryDark"
-                android:visibility="invisible" />
-
             <TextView
                 android:id="@+id/lblUser"
                 android:layout_width="75dp"
@@ -46,8 +38,15 @@
                 android:gravity="center"
                 android:text="TextView" />
 
-
         </LinearLayout>
+        <View
+            android:id="@+id/viewCheckP"
+            android:layout_width="379dp"
+            android:layout_height="3dp"
+            android:layout_gravity="bottom"
+            android:background="@color/primaryDark"
+            android:foregroundGravity="bottom"
+            android:visibility="invisible" />
 
     </androidx.cardview.widget.CardView>
 

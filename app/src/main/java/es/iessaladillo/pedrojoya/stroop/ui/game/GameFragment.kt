@@ -2,9 +2,11 @@ package es.iessaladillo.pedrojoya.stroop.ui.game
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
@@ -22,7 +24,8 @@ class GameFragment : Fragment(R.layout.game_fragment) {
     private val viewmodel: GameViewModel by viewModels {
         GameViewModelFactory(
             UsersDatabase.getInstance
-                (this.requireContext()).gameDao, requireActivity().application
+                (this.requireContext()).gameDao, UsersDatabase.getInstance
+                (this.requireContext()).userGameDao, requireActivity().application
         )
     }
 
@@ -43,7 +46,14 @@ class GameFragment : Fragment(R.layout.game_fragment) {
         viewmodel.changeCurrentWord()
         imgRight.setOnClickListener { viewmodel.checkRight() }
         imgWrong.setOnClickListener { viewmodel.checkWrong() }
+        viewmodel.gameFinish.observe(this) {
+            findNavController().navigate(
+                R.id.navigateToResult
+            )
+
+        }
     }
+
 
     private fun setupLabels() {
         var gameMode = settings.getString(getString(R.string.prefGameMode_key), "Time")
@@ -55,7 +65,7 @@ class GameFragment : Fragment(R.layout.game_fragment) {
                 lblCorrects.text = getString(R.string.game_lblCorrectLabel, it.toString())
             }
 
-            if (gameMode == "Time") {
+            if (gameMode!!.toLowerCase() == "time") {
                 viewmodel.points.observe(viewLifecycleOwner) {
                     lblAttemptOrTime.text = getString(R.string.game_points, it.toString())
                 }
@@ -66,10 +76,10 @@ class GameFragment : Fragment(R.layout.game_fragment) {
                 }
             }
 
-            currentWordIndex.observe(viewLifecycleOwner){
-                lblWordColors.text=words[it]
+            currentWordIndex.observe(viewLifecycleOwner) {
+                lblWordColors.text = words[it]
             }
-            currentColorIndex.observe(viewLifecycleOwner){
+            currentColorIndex.observe(viewLifecycleOwner) {
                 lblWordColors.setTextColor(colors[it])
             }
         }
@@ -79,10 +89,14 @@ class GameFragment : Fragment(R.layout.game_fragment) {
     }
 
     private fun setupProgressBar() {
-        progressBarGame.max = 60000
-        viewmodel.startGameThread(60000, 1000)
+        progressBarGame.max = settings.getString("prefGameTime", "60000")!!.toInt()
+        viewmodel.startGameThread(
+            settings.getString("prefGameTime", "60000")!!.toInt(),
+            settings.getString("prefWordTime", "1000")!!.toInt()
+        )
         viewmodel.progressBarTime.observe(viewLifecycleOwner) {
             progressBarGame.progress = it
         }
     }
 }
+

@@ -14,6 +14,8 @@ class PlayerAddFragmentAdapter() :
     private var avatarList: List<Int> = arrayListOf()
     var onItemClickListener: ((Int) -> Unit)? = null
 
+    var currentPosition : Int = -1
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -50,7 +52,12 @@ class PlayerAddFragmentAdapter() :
 
         fun bind(avatar:Int) {
             imgAvat.setImageResource(avatar)
-            viewCheck.visibility=View.INVISIBLE
+            if(currentPosition==adapterPosition)
+                viewCheck.visibility=View.VISIBLE
+            else{
+                viewCheck.visibility=View.INVISIBLE
+
+            }
             }
         }
     }

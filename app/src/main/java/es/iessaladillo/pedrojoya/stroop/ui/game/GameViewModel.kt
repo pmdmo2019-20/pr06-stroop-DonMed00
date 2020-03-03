@@ -1,23 +1,36 @@
 package es.iessaladillo.pedrojoya.stroop.ui.game
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Handler
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.preference.PreferenceManager
+import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.GameDao
+import es.iessaladillo.pedrojoya.stroop.data.UserGameDao
+import es.iessaladillo.pedrojoya.stroop.data.entity.Game
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
 
 class GameViewModel(
     private val gameDao: GameDao,
+    private val userGameDao: UserGameDao,
     private val application: Application
 ) : ViewModel() {
 
+
+    val settings: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(application)
+    }
+
+
     @Volatile
-    private var isGameFinished: Boolean = false
+     var isGameFinished: Boolean = false
     @Volatile
     private var currentWordMillis: Int = 0
     @Volatile
@@ -43,7 +56,7 @@ class GameViewModel(
         get() = _points
 
 
-    private val _attempt: MutableLiveData<Int> = MutableLiveData(0)
+    private val _attempt: MutableLiveData<Int> = MutableLiveData()
     val attempt: LiveData<Int>
         get() = _attempt
 
@@ -60,14 +73,32 @@ class GameViewModel(
     val currentColorIndex: LiveData<Int>
         get() = _currentColorIndex
 
+    private val _gameFinish: MutableLiveData<Game> = MutableLiveData()
+    val gameFinish: LiveData<Game>
+        get() = _gameFinish
+
+
+    init {
+        setupSettings()
+    }
+   fun setupSettings(){
+       _attempt.value=settings.getString("prefAttempts","5")!!.toInt()
+
+
+    }
+
 
     private fun onGameTimeTick(millisUntilFinished: Int) {
         _progressBarTime.value = millisUntilFinished
     }
 
+
     private fun onGameTimeFinish() {
+
+        gameDao.insertGame(Game(0,settings.getString("prefGameMode", "Time")!!,settings.getString("prefGameTime", "60000")!!.toInt()/60000,_wordsShown.value!!,_wordsCorrects.value!!,_points.value!!))
+        _gameFinish.value= Game(0,settings.getString("prefGameMode", "Time")!!,settings.getString("prefGameTime", "60000")!!.toInt()/60000,_wordsShown.value!!,_wordsCorrects.value!!,_points.value!!)
         isGameFinished = true
-        // TODO
+
     }
 
     fun nextWord() {
@@ -82,6 +113,10 @@ class GameViewModel(
         if(currentColorIndex.value==currentWordIndex.value){
             incrementWordsCorrects()
             incrementPoints()
+        }else{
+            if(settings.getString("prefGameMode", "Time")!!.toLowerCase()=="attempts"){
+                decrementAttempts()
+            }
         }
         nextWord()
     }
@@ -91,7 +126,10 @@ class GameViewModel(
         if(currentColorIndex.value!=currentWordIndex.value){
             incrementWordsCorrects()
             incrementPoints()
-
+        }else{
+            if(settings.getString("prefGameMode", "Time")!!.toLowerCase()=="attempts"){
+                decrementAttempts()
+            }
         }
         nextWord()
     }
@@ -110,6 +148,10 @@ class GameViewModel(
     }
     fun incrementPoints(){
         _points.value=_points.value!!.plus(10)
+    }
+
+    fun decrementAttempts(){
+        _attempt.value=_attempt.value!!.minus(1)
     }
 
     fun startGameThread(gameTime: Int, wordTime: Int) {
@@ -131,7 +173,7 @@ class GameViewModel(
                             currentWordMillis += checkTimeMillis
                             millisUntilFinished -= checkTimeMillis
                             onGameTimeTick(millisUntilFinished)
-                            if (millisUntilFinished <= 0) {
+                            if (millisUntilFinished <= 0 || _attempt.value!! <=0) {
                                 onGameTimeFinish()
                             }
                         }

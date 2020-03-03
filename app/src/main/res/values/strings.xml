@@ -65,7 +65,7 @@
     <string name="game_attempts">%1$s\nAttempts</string>
     <string name="game_error_inserting_player">Error inserting player</string>
 
-    <string name="game_result_lblResults">Results</string>
+    <string name="game_result_lblResults">RESULTS</string>
     <string name="game_result_lblCorrectLabel">Correct answers</string>
     <string name="game_result_lblIncorrectLabel">Incorrect answers</string>
     <string name="game_result_lblPointsLabel">Points</string>
@@ -102,5 +102,6 @@
     <string name="ARGS_USER_ID" />
     <string name="ARG_MESSAGE" />
     <string name="ARGS_USER_DELETE" />
+    <string name="ARG_GAME" />
 
 </resources>

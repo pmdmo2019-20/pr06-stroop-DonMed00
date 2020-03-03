@@ -3,7 +3,6 @@ package es.iessaladillo.pedrojoya.stroop.ui.playerAdd
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -19,8 +18,6 @@ import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
 import kotlinx.android.synthetic.main.add_player_fragment.*
 import kotlinx.android.synthetic.main.add_player_fragment.imgActualPlayer
-import kotlinx.android.synthetic.main.dashboard_fragment.*
-import kotlinx.android.synthetic.main.player_fragment.toolbar
 
 /**
  * A simple [Fragment] subclass.

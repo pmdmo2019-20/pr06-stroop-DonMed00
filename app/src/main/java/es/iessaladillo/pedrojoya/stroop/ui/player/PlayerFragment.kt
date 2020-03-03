@@ -15,21 +15,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
-import es.iessaladillo.pedrojoya.stroop.base.SharedPreferenceLongLiveData
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.data.entity.User
 import es.iessaladillo.pedrojoya.stroop.extensions.invisibleUnless
-import kotlinx.android.synthetic.main.dashboard_fragment.*
 import kotlinx.android.synthetic.main.player_fragment.*
 import kotlinx.android.synthetic.main.player_fragment.imgActualPlayer
-import kotlinx.android.synthetic.main.player_fragment.toolbar
 
 /**
  * A simple [Fragment] subclass.
  */
 class PlayerFragment : Fragment(R.layout.player_fragment) {
-    //ProgressBar para barra game
-
 
     val settings: SharedPreferences by lazy {
         PreferenceManager.getDefaultSharedPreferences(activity)
@@ -68,6 +63,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
                 lblActualPlayer.text = user.userName
                 imgActualPlayer.setImageResource(user.imageId)
                 btnEdit.visibility = View.VISIBLE
+                playerAdapter.currentPosition=user.userId.toInt()-1
 
 
             } else {
@@ -138,6 +134,11 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         settings.edit {
             putLong("currentPlayer", playerAdapter.userList[position].userId)
         }
+        if(viewmodel.currentUserId.value != -1L && settings.getLong("currentPlayer",-1)!=-1L){
+            playerAdapter.currentPosition=position
+            playerAdapter.notifyDataSetChanged()
+        }
+
         viewmodel.setCurrentUserId(playerAdapter.userList[position].userId)
     }
 
@@ -155,6 +156,4 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         findNavController().navigate(R.id.navigateToAddPlayer)
 
     }
-
-
 }

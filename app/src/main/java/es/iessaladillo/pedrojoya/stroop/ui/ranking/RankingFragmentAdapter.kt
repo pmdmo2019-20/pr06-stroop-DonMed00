@@ -17,6 +17,7 @@ class RankingFragmentAdapter ( var application : Application) :
     var onItemClickListener: ((Int) -> Unit)? = null
 
     var userGamesList: List<UserAndGame> = arrayListOf()
+    var currentPosition :Int = -1
 
 
     init {
@@ -64,6 +65,7 @@ class RankingFragmentAdapter ( var application : Application) :
                 lblGameMode.text=application.getString(R.string.ranking_item_gameMode2,gameMode)
                 lblTime.text=application.getString(R.string.ranking_item_time,totalTime.toString())
                 lblWords.text=application.getString(R.string.ranking_item_words,totalWords.toString())
+
 
                 lblCorrects.text=application.getString(R.string.ranking_item_correct,corrects.toString())
                 lblPoints2.text=points.toString()

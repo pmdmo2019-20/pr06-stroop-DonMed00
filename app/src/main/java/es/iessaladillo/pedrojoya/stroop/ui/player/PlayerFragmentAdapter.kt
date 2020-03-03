@@ -17,12 +17,14 @@ class PlayerFragmentAdapter() :
 
     var onItemClickListener: ((Int) -> Unit)? = null
 
-    var userList : List<User> = arrayListOf()
+    var userList: List<User> = arrayListOf()
+    var currentPosition: Int = -1
 
 
     init {
         setHasStableIds(true)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemView = layoutInflater.inflate(R.layout.user_player_item, parent, false)
@@ -34,13 +36,13 @@ class PlayerFragmentAdapter() :
         return userList.size
     }
 
-    fun submitList(newList : List<User>){
+    fun submitList(newList: List<User>) {
         userList = newList
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user : User = userList[position]
+        val user: User = userList[position]
         holder.bind(user)
 
 
@@ -57,11 +59,15 @@ class PlayerFragmentAdapter() :
 
         }
 
-        fun bind(user : User) {
+        fun bind(user: User) {
             user.run {
-                lblUser.text=user.userName
+                lblUser.text = user.userName
                 imgUser.setImageResource(user.imageId)
-                viewCheck.visibility= View.INVISIBLE
+                if (currentPosition == adapterPosition) {
+                    viewCheckP.visibility = View.VISIBLE
+                } else {
+                    viewCheckP.visibility = View.INVISIBLE
+                }
             }
 
         }

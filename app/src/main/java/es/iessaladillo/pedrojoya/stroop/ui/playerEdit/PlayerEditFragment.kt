@@ -2,7 +2,6 @@ package es.iessaladillo.pedrojoya.stroop.ui.playerEdit
 
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,7 +16,6 @@ import es.iessaladillo.pedrojoya.stroop.base.OnToolbarAvailableListener
 import es.iessaladillo.pedrojoya.stroop.base.observeEvent
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.extensions.hideSoftKeyboard
-import es.iessaladillo.pedrojoya.stroop.ui.dialog.DeleteDialogFragment
 import kotlinx.android.synthetic.main.player_edit_fragment.*
 
 /**
@@ -91,8 +89,8 @@ class PlayerEditFragment : Fragment(R.layout.player_edit_fragment) {
 
 
     private fun setupToolbar() {
-        toolbar.inflateMenu(R.menu.edit_menu)
-        toolbar.setOnMenuItemClickListener {
+        toolbarR.inflateMenu(R.menu.edit_menu)
+        toolbarR.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.deleteDestination -> findNavController().navigate(R.id.deleteDialogFragment,bundleOf(
                     getString(R.string.ARGS_USER_DELETE) to userId))
@@ -103,7 +101,7 @@ class PlayerEditFragment : Fragment(R.layout.player_edit_fragment) {
             true
         }
 
-        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbar)
+        (requireActivity() as OnToolbarAvailableListener).onToolbarCreated(toolbarR)
 
     }
 
