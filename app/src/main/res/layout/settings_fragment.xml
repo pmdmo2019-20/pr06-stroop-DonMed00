@@ -17,7 +17,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcSettingsList"
-        android:name="es.iessaladillo.pedrojoya.stroop.ui.settings.SettingsListFragment"
+        android:name="es.iessaladillo.pedrojoya.stroop.ui.settings.SettingListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
