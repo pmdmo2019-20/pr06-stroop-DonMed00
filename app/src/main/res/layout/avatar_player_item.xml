@@ -34,7 +34,7 @@
         <View
             android:id="@+id/viewCheck"
             android:layout_width="379dp"
-            android:layout_height="15dp"
+            android:layout_height="3dp"
             android:layout_gravity="bottom"
             android:background="@color/primaryDark"
             android:foregroundGravity="bottom"

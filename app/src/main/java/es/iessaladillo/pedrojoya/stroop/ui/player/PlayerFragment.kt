@@ -126,20 +126,19 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
     private fun setupAdapter() {
         playerAdapter = PlayerFragmentAdapter().also {
-            it.onItemClickListener = { selectCurrentPlayer(it) }
+            it.onItemClickListener = { it ->
+                selectCurrentPlayer(it)
+                playerAdapter.currentPosition=it
+                playerAdapter.notifyDataSetChanged()
+            }
         }
     }
 
     private fun selectCurrentPlayer(position: Int) {
         settings.edit {
-            putLong("currentPlayer", playerAdapter.userList[position].userId)
+            putLong("currentPlayer", playerAdapter.currentList[position].userId)
         }
-        if(viewmodel.currentUserId.value != -1L && settings.getLong("currentPlayer",-1)!=-1L){
-            playerAdapter.currentPosition=position
-            playerAdapter.notifyDataSetChanged()
-        }
-
-        viewmodel.setCurrentUserId(playerAdapter.userList[position].userId)
+        viewmodel.setCurrentUserId(playerAdapter.currentList[position].userId)
     }
 
 

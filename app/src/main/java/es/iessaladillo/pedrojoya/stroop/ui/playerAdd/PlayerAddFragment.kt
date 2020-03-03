@@ -53,15 +53,15 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
         viewmodel.message.observeEvent(this) {
             Snackbar.make(lstAvatars, it, Snackbar.LENGTH_SHORT).show()
         }
-        viewmodel.onBack.observeEvent(this){
-            if(it){
+        viewmodel.onBack.observeEvent(this) {
+            if (it) {
                 activity!!.onBackPressed()
             }
         }
-        viewmodel.currentPlayerId.observe(this){
-            if(it==0L){
+        viewmodel.currentPlayerId.observe(this) {
+            if (it == 0L) {
                 imgActualPlayer.setImageResource(R.drawable.logo)
-            }else{
+            } else {
                 imgActualPlayer.setImageResource(it.toInt())
 
             }
@@ -70,7 +70,10 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
 
     private fun save() {
         if (lblActualPlayerEdit.text.toString().isNotEmpty() && viewmodel.currentPlayerId.value != 0L) {
-            viewmodel.addUser(lblActualPlayerEdit.text.toString(), viewmodel.currentPlayerId.value!!.toInt())
+            viewmodel.addUser(
+                lblActualPlayerEdit.text.toString(),
+                viewmodel.currentPlayerId.value!!.toInt()
+            )
             lblActualPlayerEdit.hideSoftKeyboard()
         }
     }
@@ -85,9 +88,11 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
         toolbar.inflateMenu(R.menu.fragments_menu)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.InfoDialogDestination -> findNavController().navigate(R.id.infoDialogFragment,
+                R.id.InfoDialogDestination -> findNavController().navigate(
+                    R.id.infoDialogFragment,
                     bundleOf(
-                        getString(R.string.ARG_MESSAGE) to getString(R.string.player_creation_help_description))
+                        getString(R.string.ARG_MESSAGE) to getString(R.string.player_creation_help_description)
+                    )
                 )
             }
             true
@@ -108,12 +113,17 @@ class PlayerAddFragment : Fragment(R.layout.add_player_fragment) {
     private fun setupAdapter() {
         playerAddAdapter = PlayerAddFragmentAdapter()
             .also {
-                it.onItemClickListener = { position -> selectAvatar(position) }
+                it.onItemClickListener = { position ->
+                    selectAvatar(position)
+                    playerAddAdapter.currentPosition = position
+                    playerAddAdapter.notifyDataSetChanged()
+                }
             }
     }
 
     private fun selectAvatar(position: Int) {
         viewmodel.setCurrentPlayerId(avatars[position].toLong())
+
     }
 
 
