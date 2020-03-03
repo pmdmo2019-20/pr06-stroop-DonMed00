@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.ranking_fragment.*
 class RankingFragment : Fragment(R.layout.ranking_fragment) {
 
     companion object {
-        fun newInstance() = RankingFragment()
     }
 
     private lateinit var rankingAdapter: RankingFragmentAdapter

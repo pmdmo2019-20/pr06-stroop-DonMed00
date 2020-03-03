@@ -24,14 +24,12 @@ class PlayerViewmodel (
         get()=_currentUserId
 
     private val _currentUser : MutableLiveData<User> = MutableLiveData()
-    val currentUser : LiveData<User>
-        get()=_currentUser
 
     init {
         _currentUserId.value=settings.getLong("currentPlayer",-1)
     }
 
-    fun queryAllUsers(): LiveData<List<User>> {
+    private fun queryAllUsers(): LiveData<List<User>> {
         return userDao.queryAllUsers()
     }
 

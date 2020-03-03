@@ -12,7 +12,7 @@ class GameViewModelFactory(
     private val application: Application
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-        GameViewModel(gameDao,userGameDao,application) as T
+        GameViewModel(gameDao, application) as T
 
 
 }

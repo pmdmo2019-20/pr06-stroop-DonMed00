@@ -1,17 +1,15 @@
 package es.iessaladillo.pedrojoya.stroop.ui.dashboard
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.entity.Card
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.card_dashboard_item.*
 
-class DashboardFragmentAdapter(var cardList: ArrayList<Card>) :
+class DashboardFragmentAdapter(private var cardList: ArrayList<Card>) :
     RecyclerView.Adapter<DashboardFragmentAdapter.ViewHolder>() {
 
     var onItemClickListener: ((Int) -> Unit)? = null

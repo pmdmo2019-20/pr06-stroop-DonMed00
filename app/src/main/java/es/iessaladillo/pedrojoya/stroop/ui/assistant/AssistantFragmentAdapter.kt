@@ -1,6 +1,5 @@
 package es.iessaladillo.pedrojoya.stroop.ui.assistant
 
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

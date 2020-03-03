@@ -59,7 +59,7 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
 
         viewmodel.currentUserId.observe(this) {
             if (viewmodel.currentUserId.value != -1L && settings.getLong("currentPlayer",-1)!=-1L) {
-                var user = viewmodel.queryUser(it)
+                val user = viewmodel.queryUser(it)
                 lblActualPlayer.text = user.userName
                 imgActualPlayer.setImageResource(user.imageId)
                 btnEdit.visibility = View.VISIBLE

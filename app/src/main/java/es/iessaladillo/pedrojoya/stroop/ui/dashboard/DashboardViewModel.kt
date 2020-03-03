@@ -19,12 +19,8 @@ class DashboardViewModel(
     }
 
     private val _currentUserId: MutableLiveData<Long> = MutableLiveData()
-    val currentUserId: LiveData<Long>
-        get() = _currentUserId
 
     private val _currentUser: MutableLiveData<User> = MutableLiveData()
-    val currentUser: LiveData<User>
-        get() = _currentUser
 
     init {
         _currentUserId.value = settings.getLong("currentPlayer", -1)

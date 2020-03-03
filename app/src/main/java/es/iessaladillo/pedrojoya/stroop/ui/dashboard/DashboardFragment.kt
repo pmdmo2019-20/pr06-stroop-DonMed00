@@ -53,7 +53,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
     }
 
     private fun observeFirstInstall() {
-        var firstTime = settings.getBoolean("firstTime", true)
+        val firstTime = settings.getBoolean("firstTime", true)
         if (firstTime) {
             findNavController().navigate(R.id.navigateToAssistant)
         }
@@ -66,7 +66,7 @@ class DashboardFragment : Fragment(R.layout.dashboard_fragment) {
     private fun observeUser() {
         SharedPreferenceLongLiveData(settings, "currentPlayer", -1L).observe(this) {
             if (it != -1L) {
-                var user = viewmodel.queryUser(it)
+                val user = viewmodel.queryUser(it)
                 imgActualPlayer.setImageResource(user.imageId)
                 lblActualPlayerDash.text = user.userName
             } else {

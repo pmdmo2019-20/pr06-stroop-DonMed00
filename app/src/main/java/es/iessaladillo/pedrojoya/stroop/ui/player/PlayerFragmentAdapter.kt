@@ -3,16 +3,12 @@ package es.iessaladillo.pedrojoya.stroop.ui.player
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.entity.User
-import es.iessaladillo.pedrojoya.stroop.data.pojo.UserAndGame
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.avatar_player_item.*
-import kotlinx.android.synthetic.main.avatar_player_item.viewCheck
 import kotlinx.android.synthetic.main.user_player_item.*
 
 class PlayerFragmentAdapter() :

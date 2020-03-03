@@ -5,20 +5,15 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import es.iessaladillo.pedrojoya.stroop.NO_PLAYER
 import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.UsersDatabase
 import es.iessaladillo.pedrojoya.stroop.ui.player.PlayerViewmodel
-import es.iessaladillo.pedrojoya.stroop.ui.playerEdit.PlayerEditViewmodel
 
 /**
  * A simple [Fragment] subclass.
@@ -40,7 +35,7 @@ class DeleteDialogFragment : DialogFragment() {
             builder.setTitle(R.string.player_deletion_title)
             builder.setMessage(R.string.player_deletion_message)
                 .setPositiveButton(R.string.player_deletion_yes) { _, _ ->
-                    var userDao = UsersDatabase.getInstance(this.requireContext()).userDao
+                    val userDao = UsersDatabase.getInstance(this.requireContext()).userDao
 
                      val userId: Long by lazy {
                         arguments!!.getLong(getString(R.string.ARGS_USER_DELETE))

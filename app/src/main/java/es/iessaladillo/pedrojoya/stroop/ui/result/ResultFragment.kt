@@ -58,9 +58,6 @@ class ResultFragment : Fragment(R.layout.result_fragment) {
         lbl2.text=game.corrects.toString()
         lbl4.text=incorrects.toString()
         lbl6.text=game.points.toString()
-
-
-
     }
 
     private fun setupToolbar() {

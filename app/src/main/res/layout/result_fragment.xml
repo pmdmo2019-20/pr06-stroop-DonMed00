@@ -101,14 +101,14 @@
         android:id="@+id/lbl4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="10"
         android:textAlignment="center"
         android:textColor="@color/accent"
         android:textSize="@dimen/main_textSize_4x"
         app:layout_constraintEnd_toEndOf="@+id/lbl3"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toStartOf="@+id/lbl3"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="@+id/lbl2"
         app:layout_constraintTop_toBottomOf="@+id/lbl3" />
 
     <TextView

@@ -15,7 +15,8 @@ class RankingViewModel(
 ) : ViewModel() {
 
 
-    val _userGames: MutableLiveData<List<UserAndGame>> = MutableLiveData()
+    private val _userGames: MutableLiveData<List<UserAndGame>> = MutableLiveData()
+
     val userGames: LiveData<List<UserAndGame>>
     get() = _userGames
 
@@ -24,11 +25,6 @@ class RankingViewModel(
     val settings: SharedPreferences by lazy {
         PreferenceManager.getDefaultSharedPreferences(application)
     }
-
-    init {
-        queryAllUserGames()
-    }
-
 
 
     fun queryAllUserGames() {

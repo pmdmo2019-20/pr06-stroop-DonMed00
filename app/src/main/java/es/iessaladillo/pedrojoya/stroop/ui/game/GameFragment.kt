@@ -2,7 +2,6 @@ package es.iessaladillo.pedrojoya.stroop.ui.game
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -56,7 +55,7 @@ class GameFragment : Fragment(R.layout.game_fragment) {
 
 
     private fun setupLabels() {
-        var gameMode = settings.getString(getString(R.string.prefGameMode_key), "Time")
+        val gameMode = settings.getString(getString(R.string.prefGameMode_key), "Time")
         viewmodel.run {
             wordsShown.observe(viewLifecycleOwner) {
                 lblWords.text = getString(R.string.game_lblWordsLabel, it.toString())

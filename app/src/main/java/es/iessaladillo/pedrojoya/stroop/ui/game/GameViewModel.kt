@@ -4,14 +4,11 @@ import android.app.Application
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Handler
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
-import es.iessaladillo.pedrojoya.stroop.R
 import es.iessaladillo.pedrojoya.stroop.data.GameDao
-import es.iessaladillo.pedrojoya.stroop.data.UserGameDao
 import es.iessaladillo.pedrojoya.stroop.data.entity.Game
 import kotlin.concurrent.thread
 import kotlin.random.Random
@@ -19,7 +16,6 @@ import kotlin.random.Random
 
 class GameViewModel(
     private val gameDao: GameDao,
-    private val userGameDao: UserGameDao,
     private val application: Application
 ) : ViewModel() {
 
@@ -81,7 +77,7 @@ class GameViewModel(
     init {
         setupSettings()
     }
-   fun setupSettings(){
+   private fun setupSettings(){
        _attempt.value=settings.getString("prefAttempts","5")!!.toInt()
 
 
@@ -101,7 +97,7 @@ class GameViewModel(
 
     }
 
-    fun nextWord() {
+    private fun nextWord() {
         incrementWordsShown()
         changeCurrentWord()
 
@@ -139,18 +135,18 @@ class GameViewModel(
         _currentColorIndex.value = colors.indexOf(colors[Random.nextInt(4)])
     }
 
-    fun incrementWordsShown() {
+    private fun incrementWordsShown() {
         _wordsShown.value = _wordsShown.value!!.plus(1)
     }
 
-    fun incrementWordsCorrects() {
+    private fun incrementWordsCorrects() {
         _wordsCorrects.value = _wordsCorrects.value!!.plus(1)
     }
-    fun incrementPoints(){
+    private fun incrementPoints(){
         _points.value=_points.value!!.plus(10)
     }
 
-    fun decrementAttempts(){
+    private fun decrementAttempts(){
         _attempt.value=_attempt.value!!.minus(1)
     }
 

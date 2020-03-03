@@ -3,8 +3,7 @@ package es.iessaladillo.pedrojoya.stroop.data.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(
-)
+@Entity
 data class Game(
     @PrimaryKey(autoGenerate = true) val gameId: Long,
     val gameMode: String,

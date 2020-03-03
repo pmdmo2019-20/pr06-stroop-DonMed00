@@ -1,14 +1,12 @@
 package es.iessaladillo.pedrojoya.stroop.ui.playerEdit
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import es.iessaladillo.pedrojoya.stroop.base.Event
 import es.iessaladillo.pedrojoya.stroop.data.UserDao
 import es.iessaladillo.pedrojoya.stroop.data.entity.User
-import java.lang.Exception
 import kotlin.concurrent.thread
 
 class PlayerEditViewmodel(
